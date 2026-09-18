@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汽车保养培训讲义 · 从零开始看懂你的车</title>
+<style>
+  :root{
+    --ink:#1a1d23;
+    --ink-2:#3d434e;
+    --ink-3:#6b7280;
+    --line:#e3e6ec;
+    --line-2:#f0f2f6;
+    --bg:#fbfbfc;
+    --card:#ffffff;
+    --accent:#1668dc;
+    --accent-soft:#eef4ff;
+    --warn:#c2410c;
+    --warn-soft:#fff5ed;
+    --danger:#c0392b;
+    --danger-soft:#fdf2f1;
+    --ok:#15803d;
+    --ok-soft:#f0fdf4;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15.5px;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:880px;margin:0 auto;padding:0 28px 100px;}
+
+  /* ---------- 封面 ---------- */
+  .cover{
+    padding:64px 0 44px;
+    border-bottom:2px solid var(--ink);
+    margin-bottom:44px;
+  }
+  .cover .kicker{
+    font-size:12.5px;letter-spacing:.22em;color:var(--accent);
+    font-weight:700;text-transform:uppercase;margin-bottom:18px;
+  }
+  .cover h1{
+    font-size:38px;line-height:1.25;margin:0 0 16px;letter-spacing:-.02em;
+    font-weight:800;
+  }
+  .cover .sub{font-size:17px;color:var(--ink-2);margin:0 0 26px;line-height:1.7;}
+  .cover .meta{
+    display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--ink-3);
+  }
+  .cover .meta span{
+    background:var(--card);border:1px solid var(--line);border-radius:99px;
+    padding:4px 13px;
+  }
+
+  /* ---------- 标题层级 ---------- */
+  h2{
+    font-size:24px;margin:56px 0 18px;padding-top:22px;letter-spacing:-.01em;
+    border-top:1px solid var(--line);font-weight:750;
+  }
+  h2 .num{
+    display:inline-block;min-width:34px;height:34px;line-height:34px;text-align:center;
+    background:var(--ink);color:#fff;border-radius:8px;font-size:15px;
+    margin-right:12px;vertical-align:2px;font-weight:700;
+  }
+  h3{font-size:18px;margin:34px 0 12px;font-weight:700;letter-spacing:-.01em;}
+  h4{font-size:15.5px;margin:22px 0 8px;font-weight:700;color:var(--ink-2);}
+  p{margin:0 0 14px;}
+  ul,ol{margin:0 0 16px;padding-left:22px;}
+  li{margin-bottom:7px;}
+  strong{font-weight:700;}
+  code{
+    background:var(--line-2);padding:1px 6px;border-radius:4px;
+    font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13.5px;
+    color:#b1305b;
+  }
+
+  /* ---------- 组件 ---------- */
+  .lead{
+    font-size:16.5px;color:var(--ink-2);border-left:3px solid var(--accent);
+    padding:2px 0 2px 18px;margin:0 0 26px;line-height:1.8;
+  }
+  .box{
+    border:1px solid var(--line);background:var(--card);border-radius:var(--radius);
+    padding:18px 22px;margin:20px 0;
+  }
+  .box .t{
+    font-weight:750;font-size:14px;margin-bottom:10px;display:flex;
+    align-items:center;gap:8px;letter-spacing:.01em;
+  }
+  .box.key{background:var(--accent-soft);border-color:#cfe0ff;}
+  .box.key .t{color:var(--accent);}
+  .box.warn{background:var(--warn-soft);border-color:#fed7aa;}
+  .box.warn .t{color:var(--warn);}
+  .box.danger{background:var(--danger-soft);border-color:#f5c6c0;}
+  .box.danger .t{color:var(--danger);}
+  .box.ok{background:var(--ok-soft);border-color:#bbf7d0;}
+  .box.ok .t{color:var(--ok);}
+  .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0;}
+
+  /* 比喻块 */
+  .metaphor{
+    border-left:3px solid #d4a017;background:#fffbf0;padding:14px 20px;
+    margin:18px 0;border-radius:0 8px 8px 0;font-size:15px;
+  }
+  .metaphor b{color:#8a5b00;}
+
+  /* 图示 */
+  figure{margin:26px 0;text-align:center;}
+  figure svg{max-width:100%;height:auto;}
+  figcaption{
+    font-size:13px;color:var(--ink-3);margin-top:10px;line-height:1.6;
+  }
+
+  /* 表格 */
+  .tw{overflow-x:auto;margin:20px 0;}
+  table{
+    width:100%;border-collapse:collapse;font-size:14.5px;background:var(--card);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  }
+  th{
+    background:#f6f7fa;text-align:left;padding:11px 14px;font-weight:700;
+    font-size:13.5px;color:var(--ink-2);border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  td{padding:11px 14px;border-bottom:1px solid var(--line-2);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fafbfd;}
+
+  /* 目录 */
+  .toc{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 26px;margin-bottom:8px;
+  }
+  .toc .t{font-weight:750;font-size:14px;margin-bottom:14px;letter-spacing:.04em;color:var(--ink-2);}
+  .toc ol{list-style:none;padding:0;margin:0;counter-reset:toc;}
+  .toc li{counter-increment:toc;margin-bottom:9px;font-size:14.5px;}
+  .toc li a{
+    color:var(--ink);text-decoration:none;display:flex;gap:10px;
+    border-bottom:1px dashed transparent;
+  }
+  .toc li a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+  .toc li a::before{
+    content:counter(toc,decimal-leading-zero);
+    color:var(--accent);font-weight:700;font-family:"SF Mono",Menlo,monospace;
+    font-size:13px;flex-shrink:0;
+  }
+  .toc li a span{color:var(--ink-3);font-size:13px;margin-left:auto;white-space:nowrap;}
+
+  /* 简表：该不该做 */
+  .verdict{display:flex;gap:6px;font-size:13px;font-weight:700;}
+  .v-yes{color:var(--danger);}
+  .v-no{color:var(--ok);}
+  .v-mid{color:var(--warn);}
+
+  /* 页脚 */
+  footer{
+    margin-top:70px;padding-top:24px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--ink-3);line-height:1.8;
+  }
+
+  /* 打印 */
+  @media print{
+    body{background:#fff;font-size:11pt;line-height:1.7;}
+    .page{max-width:none;padding:0;}
+    h2{page-break-after:avoid;margin-top:30px;}
+    h3,figure,.box,.tw,table{page-break-inside:avoid;}
+    .cover{padding-top:0;}
+    .toc{page-break-after:always;}
+    a{color:inherit;text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ================= 封面 ================= -->
+<div class="cover">
+  <div class="kicker">Training Manual / 内部培训讲义</div>
+  <h1>汽车保养，到底在保养什么</h1>
+  <p class="sub">一份从原理讲起的入门讲义 —— 不背周期表，而是搞懂"为什么"。<br>
+  学完之后，你能自己判断哪些项目该做、哪些是智商税，以及什么时候该进店、什么时候可以再等等。</p>
+  <div class="meta">
+    <span>零基础友好</span>
+    <span>原理优先</span>
+    <span>含图解与对照表</span>
+    <span>建议阅读时长 60 分钟</span>
+  </div>
+</div>
+
+<!-- ================= 目录 ================= -->
+<div class="toc">
+  <div class="t">目 录</div>
+  <ol>
+    <li><a href="#s1">先建立框架：保养的本质是三件事 <span>核心心法</span></a></li>
+    <li><a href="#s2">发动机的血液与呼吸：机油、机滤、空滤 <span>最重点项目</span></a></li>
+    <li><a href="#s3">别让发动机烧穿：冷却系统 <span>高温致命</span></a></li>
+    <li><a href="#s4">发动机的三根火柴：火花塞与点火 <span>抖动与油耗</span></a></li>
+    <li><a href="#s5">传动的两种世界：变速箱油 <span>最易被遗忘</span></a></li>
+    <li><a href="#s6">停得住比跑得快重要：制动系统 <span>安全第一</span></a></li>
+    <li><a href="#s7">转向与悬挂：底盘件怎么判断寿命 <span>异响来源</span></a></li>
+    <li><a href="#s8">轮胎：唯一接触地面的 4 张名片 <span>最高性价比</span></a></li>
+    <li><a href="#s9">电从哪来：电瓶、发电机与电气自检 <span>打不着火</span></a></li>
+    <li><a href="#s10">把知识变成表格：保养周期与耗材选购 <span>落地清单</span></a></li>
+    <li><a href="#s11">日常自检：每月 10 分钟五项检查 <span>动手环节</span></a></li>
+    <li><a href="#s12">看症状 → 找原因：故障速查对照表 <span>诊断训练</span></a></li>
+    <li><a href="#s13">避坑指南：常见误区与智商税 <span>省钱关键</span></a></li>
+    <li><a href="#s14">应急处理：路上出问题怎么办 <span>保命知识</span></a></li>
+    <li><a href="#s15">结业自测：20 道判断题 <span>检验成果</span></a></li>
+  </ol>
+</div>
+
+<!-- ================= 1 ================= -->
+<h2 id="s1"><span class="num">01</span>先建立框架：保养的本质是三件事</h2>
+
+<p class="lead">很多人学保养是背表格："5000 公里换机油、2 万公里换空滤"。这是最没用的学法——因为每辆车的工况完全不同，同一台车在城市堵车和跑高速，机油寿命能差一倍。真正有用的，是先理解车为什么会坏。</p>
+
+<h3>车的"衰老"，本质是三种消耗</h3>
+
+<p>把你的车想象成一家工厂。工厂要持续运转，必须同时满足三个条件：<strong>润滑到位、温度受控、材质完好</strong>。任何一项被破坏，工厂就停产。汽车所有的保养项目，本质上都在对抗这三种消耗：</p>
+
+<div class="box key">
+  <div class="t">核心框架：三大消耗 → 三大保养</div>
+  <ul style="margin-bottom:0">
+    <li><strong>油液变质</strong>（润滑与传动）—— 机油、变速箱油、刹车油、防冻液、助力油。它们会氧化、吸水、被污染，性能不可逆下降。<br>
+    <span style="color:var(--ink-3);font-size:14px">→ 对策：按周期更换（不是"补充"，是"换掉"）</span></li>
+    <li><strong>滤材堵塞</strong>（清洁度）—— 机滤、空滤、空调滤、汽油滤。它们的工作方式就是"被堵住"，堵到一定程度就失去意义。<br>
+    <span style="color:var(--ink-3);font-size:14px">→ 对策：随油液一起换，成本低、收益大</span></li>
+    <li><strong>摩擦件磨损</strong>（物理损耗）—— 刹车片、刹车盘、轮胎、火花塞、雨刮条、皮带。它们靠"牺牲自己"工作，磨薄了就是真的没了。<br>
+    <span style="color:var(--ink-3);font-size:14px">→ 对策：定期测量厚度/状态，按实际余量换</span></li>
+  </ul>
+</div>
+
+<div class="metaphor">
+<b>一句话记住：</b>油液和滤芯是"消耗品"，按时间和里程换；刹车片、轮胎是"磨损件"，按实际厚度换。两类东西的更换逻辑完全不同——把磨损件当消耗品按里程换，会浪费；把消耗品当磨损件"等它不行了再换"，会毁车。
+</div>
+
+<h3>为什么"按里程保养"只是个粗筛子</h3>
+
+<p>厂家手册上的保养周期，是在"标准工况"下测出来的：环境温度适中、道路通畅、匀速行驶、每次都能跑热。但现实中你的车可能长期处于<strong>严苛工况</strong>：</p>
+
+<div class="tw">
+<table>
+  <thead>
+    <tr><th>严苛工况（属于你的请打勾）</th><th>为什么伤车</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>单程经常不到 8 公里</td><td>发动机还没热就到地方了，水汽和燃油稀释物排不出去，机油劣化速度翻倍</td></tr>
+    <tr><td>长期市区拥堵、频繁启停</td><td>同样的里程数，发动机实际运转时间是高速工况的 3～5 倍</td></tr>
+    <tr><td>经常短途载重、爬坡、拖挂</td><td>负荷大，油温高，油液氧化更快</td></tr>
+    <tr><td>多尘、多沙、工地环境</td><td>空滤和空调滤堵塞速度成倍加快</td></tr>
+    <tr><td>极寒或极热地区</td><td>低温启动磨损大；高温加速油液和橡胶件老化</td></tr>
+    <tr><td>长期停放（一个月以上不动）</td><td>油液沉降、电瓶自放电、轮胎局部变形、刹车盘生锈</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box warn">
+  <div class="t">⚠ 重要原则</div>
+  <p style="margin-bottom:0">如果符合上面任意 2 条以上，你的保养周期应该向手册里的<strong>"严苛工况建议"</strong>靠拢，通常是把标准周期<strong>打七折到五折</strong>。厂家手册一般同时给出两套周期，很多人只看了宽松的那套。</p>
+</div>
+
+<h3>看懂这张图，你就懂了"保养曲线"</h3>
+
+<p>所有耗材的失效都是<strong>非线性</strong>的：前期性能几乎不掉，看起来"还能用"；但越过某个临界点后会断崖式暴跌。这就是为什么"等坏了再修"永远是错的策略。</p>
+
+<figure>
+<svg viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="耗材失效曲线图">
+  <defs>
+    <marker id="ar1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#6b7280"/>
+    </marker>
+    <linearGradient id="dangerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c0392b" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c0392b" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="okGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15803d" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#15803d" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景分区 -->
+  <rect x="80" y="30" width="270" height="230" fill="url(#okGrad)"/>
+  <rect x="350" y="30" width="230" height="230" fill="url(#dangerGrad)"/>
+
+  <!-- 坐标轴 -->
+  <line x1="80" y1="260" x2="610" y2="260" stroke="#6b7280" stroke-width="1.5" marker-end="url(#ar1)"/>
+  <line x1="80" y1="260" x2="80" y2="24" stroke="#6b7280" stroke-width="1.5" marker-end="url(#ar1)"/>
+  <text x="612" y="278" font-size="12.5" fill="#3d434e" font-family="sans-serif">使用里程 / 时间</text>
+  <text x="72" y="20" font-size="12.5" fill="#3d434e" text-anchor="end" font-family="sans-serif">性能保持率</text>
+
+  <!-- 网格 -->
+  <line x1="80" y1="200" x2="600" y2="200" stroke="#e3e6ec" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="80" y1="140" x2="600" y2="140" stroke="#e3e6ec" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="80" y1="80"  x2="600" y2="80"  stroke="#e3e6ec" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="350" y1="30" x2="350" y2="260" stroke="#c0392b" stroke-width="1.2" stroke-dasharray="5 4"/>
+
+  <!-- 失效曲线 -->
+  <path d="M80,42 C200,46 300,58 350,80 C400,110 440,180 480,228 C500,246 520,254 560,258"
+        fill="none" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- 理想保养线 -->
+  <circle cx="350" cy="80" r="6" fill="#fff" stroke="#c0392b" stroke-width="3"/>
+  <text x="358" y="70" font-size="13" font-weight="700" fill="#c0392b" font-family="sans-serif">理想更换点</text>
+
+  <!-- 标注 -->
+  <text x="200" y="286" font-size="12.5" fill="#15803d" text-anchor="middle" font-family="sans-serif" font-weight="600">舒适区：性能稳定，可放心用</text>
+  <text x="470" y="286" font-size="12.5" fill="#c0392b" text-anchor="middle" font-family="sans-serif" font-weight="600">危险区：断崖下跌，已开始损伤</text>
+
+  <!-- 说明文字 -->
+  <text x="350" y="110" font-size="12" fill="#6b7280" text-anchor="middle" font-family="sans-serif">↓ 此后每 1 公里都在加速损伤其他部件</text>
+
+  <!-- 注释 -->
+  <text x="88" y="250" font-size="11.5" fill="#6b7280" font-family="sans-serif">100%</text>
+  <text x="88" y="145" font-size="11.5" fill="#6b7280" font-family="sans-serif">80%</text>
+  <text x="88" y="85"  font-size="11.5" fill="#6b7280" font-family="sans-serif">60%</text>
+</svg>
+<figcaption>图 1-1 耗材失效曲线。真正的省钱策略是在"理想更换点"动手——此时耗材本身还有余量，但继续用下去会拉高其他部件的损伤风险。</figcaption>
+</figure>
+
+<div class="box danger">
+  <div class="t">✕ 最贵的错误</div>
+  <p style="margin-bottom:0">机油超期使用，省下的是 400 元机油钱，赔上的是发动机大修（数万元）。刹车片磨到极限，省下的是 300 元，赔上的是刹车盘（1500 元起）+ 一次事故的风险。<strong>耗材的钱是"门票"，不是"开销"。</strong></p>
+</div>
+
+<!-- ================= 2 ================= -->
+<h2 id="s2"><span class="num">02</span>发动机的血液与呼吸：机油、机滤、空滤</h2>
+
+<p class="lead">这一节是全篇最重要的。机油相关的保养决定了发动机能不能活到 20 万公里，其它都是配角。</p>
+
+<h3>2.1 机油到底在干什么？五个作用</h3>
+
+<p>很多人以为机油只是"润滑"。其实它在发动机里同时干五份工作：</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>作用</th><th>原理</th><th>失效后果</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>润滑</strong></td>
+      <td>在金属摩擦面之间形成一层油膜，让金属不直接接触</td>
+      <td>金属干磨 → 拉缸、抱瓦，发动机报废</td>
+    </tr>
+    <tr>
+      <td><strong>冷却</strong></td>
+      <td>带走活塞、轴瓦等部位约 30% 的热量（这部分靠冷却液到不了）</td>
+      <td>局部过热、活塞熔化</td>
+    </tr>
+    <tr>
+      <td><strong>清洁</strong></td>
+      <td>用清净分散剂把积碳、油泥"洗"下来，悬浮在油里带走</td>
+      <td>油泥堆积、油道堵塞、油耗上升</td>
+    </tr>
+    <tr>
+      <td><strong>密封</strong></td>
+      <td>填充活塞环与缸壁的微小缝隙，维持气缸压力</td>
+      <td>缸压下降、动力变差、烧机油</td>
+    </tr>
+    <tr>
+      <td><strong>防锈防腐</strong></td>
+      <td>在金属表面形成保护膜，中和燃烧产生的酸性物质</td>
+      <td>内部锈蚀、轴瓦腐蚀</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="metaphor">
+<b>关键比喻：</b>机油不是"一桶油"，而是一桶<strong>有使用寿命的化学药剂</strong>。基础油负责润滑和冷却，各种添加剂（清净剂、抗磨剂、抗氧化剂、抗泡剂等）负责其余工作。添加剂是消耗品——用完了，油还在，但功能已经废了。这解释了为什么"机油变黑"不一定坏（说明清洁剂在干活），但"机油超期"一定坏。
+</div>
+
+<h3>2.2 机油标号怎么读：0W-20 是什么意思</h3>
+
+<p>机油桶上那串 <code>0W-20</code> 或 <code>5W-30</code> 是 SAE 黏度等级，它描述的是<strong>机油在不同温度下的"稀稠"程度</strong>。</p>
+
+<figure>
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="机油标号解读示意图">
+  <!-- 大字标号 -->
+  <rect x="60" y="30" width="250" height="96" rx="12" fill="#eef4ff" stroke="#cfe0ff" stroke-width="1.5"/>
+  <text x="185" y="94" font-size="46" font-weight="800" fill="#1668dc" text-anchor="middle" font-family="monospace">0W-20</text>
+
+  <!-- 引线：W 前 -->
+  <line x1="126" y1="126" x2="126" y2="170" stroke="#6b7280" stroke-width="1.3"/>
+  <circle cx="126" cy="140" r="3" fill="#6b7280"/>
+  <text x="126" y="188" font-size="12.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">W 前的数字</text>
+
+  <!-- 引线：W -->
+  <line x1="185" y1="126" x2="185" y2="170" stroke="#6b7280" stroke-width="1.3"/>
+  <circle cx="185" cy="140" r="3" fill="#6b7280"/>
+  <text x="185" y="188" font-size="12.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">W</text>
+
+  <!-- 引线：W 后 -->
+  <line x1="255" y1="126" x2="255" y2="170" stroke="#6b7280" stroke-width="1.3"/>
+  <circle cx="255" cy="140" r="3" fill="#6b7280"/>
+  <text x="255" y="188" font-size="12.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">W 后的数字</text>
+
+  <!-- 三张说明卡 -->
+  <rect x="40" y="204" width="180" height="112" rx="9" fill="#ffffff" stroke="#e3e6ec"/>
+  <text x="130" y="230" font-size="13" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">低温流动性</text>
+  <text x="130" y="254" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">数字越小，冷启动时</text>
+  <text x="130" y="272" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">泵送越快、保护越早</text>
+  <text x="130" y="298" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">0W 可耐约 -35℃</text>
+
+  <rect x="240" y="204" width="200" height="112" rx="9" fill="#ffffff" stroke="#e3e6ec"/>
+  <text x="340" y="230" font-size="13" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">Winter 冬季</text>
+  <text x="340" y="254" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">表示这是"多级油"</text>
+  <text x="340" y="272" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">冬夏通用，不必按季换</text>
+  <text x="340" y="298" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">现代车都用多级油</text>
+
+  <rect x="460" y="204" width="180" height="112" rx="9" fill="#ffffff" stroke="#e3e6ec"/>
+  <text x="550" y="230" font-size="13" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">高温黏度</text>
+  <text x="550" y="254" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">数字越大，高温下</text>
+  <text x="550" y="272" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">油膜越厚、阻力越大</text>
+  <text x="550" y="298" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">20 比 30 更省油</text>
+</svg>
+<figcaption>图 2-1 机油标号的三段含义。注意：<strong>标号不是品质等级</strong>，0W-20 不代表比 5W-40 高级，只代表黏度特性不同。</figcaption>
+</figure>
+
+<div class="box danger">
+  <div class="t">⚠ 铁律：黏度不能随便换</div>
+  <p style="margin-bottom:0">你的车该用什么黏度，由厂家根据发动机的油道设计、轴瓦间隙、可变气门系统（VVT）的液压要求来定。<strong>用错黏度会直接导致故障</strong>：</p>
+  <ul style="margin-top:8px;margin-bottom:0">
+    <li>该用 0W-20 却加 5W-40 → 油太稠，冷启动泵送慢、VVT 响应迟钝、油耗上升、凸轮轴磨损</li>
+    <li>该用 5W-40 却加 0W-20 → 油太稀，高温油膜强度不够，轴瓦和凸轮轴异常磨损</li>
+  </ul>
+</div>
+
+<h4>另一个维度：ACEA / API 等级（品质等级）</h4>
+<p>这才是"好不好"的指标。常见写法如 <code>API SP</code>、<code>ACEA C5</code>、<code>ILSAC GF-6</code>：</p>
+<ul>
+  <li><strong>API</strong>（美国石油协会）：S 开头是汽油机（S 越靠后越新，如 SN → SP），C 开头是柴油机。字母越靠后，对正时链条保护、低速早燃（LSPI）、涡轮增压沉积物的控制要求越高。</li>
+  <li><strong>ACEA</strong>（欧洲汽车制造商协会）：欧洲车（尤其德系）主要看这个，A/B 系列是汽油/轻型柴油，C 系列是带后处理（三元催化、GPF 颗粒捕捉器）的低灰分油。</li>
+  <li><strong>ILSAC</strong>：日美系常用的节能认证，GF-6A/6B。</li>
+</ul>
+
+<div class="box key">
+  <div class="t">✓ 选购口诀</div>
+  <p style="margin-bottom:0"><strong>先看手册定的黏度（必须严格一致），再看认证等级（不低于手册要求）。</strong>手册上通常写着类似"0W-20，API SP 或以上"——那就是标准答案。有 GPF/三元催化的车（大部分 2019 年后的新车）必须用低灰分油（ACEA C 系列或标注"低灰分"），否则灰分会堵塞后处理系统，维修费极高。</p>
+</div>
+
+<h3>2.3 全合成 / 半合成 / 矿物油：差别在哪</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th>类型</th><th>基础油来源</th><th>分子结构</th><th>典型寿命</th><th>价格</th></tr></thead>
+  <tbody>
+    <tr><td><strong>全合成</strong></td><td>化学合成（PAO、酯类等）</td><td>分子大小均匀、形状一致</td><td>1～1.5 万公里 / 1 年</td><td>高</td></tr>
+    <tr><td><strong>半合成</strong></td><td>合成 + 矿物混合</td><td>介于两者之间</td><td>7500 公里 / 8 个月</td><td>中</td></tr>
+    <tr><td><strong>矿物油</strong></td><td>原油直接精炼</td><td>分子参差不齐，含杂质多</td><td>5000 公里 / 6 个月</td><td>低</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="metaphor">
+<b>为什么分子结构重要：</b>想象一条路，全合成是"大小一致、排列整齐的鹅卵石"，矿物油是"大小混杂、有尖角的碎石"。发动机转速上万转时，整齐的分子间更容易滑动（摩擦小），且受热后不易断裂（抗氧化好）。这就是全合成寿命更长、低温启动更顺的原因。
+</div>
+
+<p>有没有必要上全合成？<strong>有，只要不是老旧车型。</strong>理由很实际：全合成单价贵约 2 倍，但寿命长约 2～3 倍，单位里程成本反而接近甚至更低，还附带清洁力强、冷启动保护好的收益。带涡轮增压的发动机几乎必须用全合成（涡轮转速可达 20 万转/分钟，对机油要求极高）。</p>
+
+<h3>2.4 机油多久换？学会"三看"</h3>
+
+<p>不要只依赖里程。判断换油时机要综合三个信号：</p>
+
+<ol>
+  <li><strong>看时间：</strong>机油开封后即使不开车也会氧化吸潮。<strong>全合成最长 1 年，必须换。</strong>低里程车辆（一年跑不到 5000 公里）绝不要"等里程到了再换"。</li>
+  <li><strong>看里程：</strong>以上述表格为基线，再按你的工况打折。</li>
+  <li><strong>看机油尺上的状态：</strong>这是最关键的手感训练。</li>
+</ol>
+
+<figure>
+<svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="机油状态判断图">
+  <text x="40" y="30" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">拔出机油尺，滴一滴在纸巾上静置半小时</text>
+
+  <!-- 三种状态 -->
+  <!-- 1 正常 -->
+  <rect x="40" y="56" width="180" height="180" rx="10" fill="#fff" stroke="#e3e6ec"/>
+  <circle cx="130" cy="118" r="38" fill="#c8a24a" opacity="0.85"/>
+  <circle cx="130" cy="118" r="24" fill="#d4a017" opacity="0.9"/>
+  <text x="130" y="176" font-size="13.5" font-weight="700" fill="#15803d" text-anchor="middle" font-family="sans-serif">✓ 状态良好</text>
+  <text x="130" y="198" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">色深但有透明度</text>
+  <text x="130" y="216" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">边缘清晰，无沉积环</text>
+
+  <!-- 2 可继续用 -->
+  <rect x="250" y="56" width="180" height="180" rx="10" fill="#fff" stroke="#e3e6ec"/>
+  <circle cx="340" cy="118" r="38" fill="#8a6a30" opacity="0.9"/>
+  <circle cx="340" cy="118" r="24" fill="#7a5a28"/>
+  <text x="340" y="176" font-size="13.5" font-weight="700" fill="#c2410c" text-anchor="middle" font-family="sans-serif">△ 该关注了</text>
+  <text x="340" y="198" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">颜色深黑不透明</text>
+  <text x="340" y="216" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">出现淡色沉积环</text>
+
+  <!-- 3 必须换 -->
+  <rect x="460" y="56" width="180" height="180" rx="10" fill="#fff" stroke="#f5c6c0" stroke-width="1.5"/>
+  <circle cx="550" cy="118" r="38" fill="#3a2a18"/>
+  <circle cx="550" cy="118" r="27" fill="#241508"/>
+  <circle cx="550" cy="112" r="7" fill="#6b5030" opacity="0.8"/>
+  <text x="550" y="176" font-size="13.5" font-weight="700" fill="#c0392b" text-anchor="middle" font-family="sans-serif">✕ 立即更换</text>
+  <text x="550" y="198" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">墨黑、有颗粒感</text>
+  <text x="550" y="216" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">扩散环消失、分层明显</text>
+</svg>
+<figcaption>图 2-2 机油试纸三态判断。机油变黑≠该换（清洁剂在工作），<strong>分层、有颗粒、失去扩散环才是真该换</strong>。</figcaption>
+</figure>
+
+<div class="box warn">
+  <div class="t">⚠ 除试纸外，出现以下任一情况立即换油</div>
+  <ul style="margin-bottom:0">
+    <li><strong>机油压力灯亮</strong> —— 立刻靠边熄火，不要再开，否则几分钟内毁发动机</li>
+    <li><strong>油尺有乳白色泡沫</strong> —— 机油进水（缸垫冲了或长期短途），需立刻检查</li>
+    <li><strong>有一股焦糊味或汽油味</strong> —— 燃油稀释严重或高温劣化</li>
+    <li><strong>机油里能看到金属屑</strong> —— 内部已严重磨损，需立即送修</li>
+  </ul>
+</div>
+
+<h3>2.5 机油滤清器：别买便宜货</h3>
+
+<p>机滤的工作是<strong>把机油里的金属屑、积碳、油泥滤掉</strong>。它和机油是"一对一绑定"的关系——每次换机油必须同时换机滤。</p>
+
+<div class="metaphor">
+<b>为什么机滤不能省：</b>机滤内部有一个<strong>旁通阀</strong>。设计逻辑是：正常状态机油从滤纸流过（过滤）；如果滤纸被彻底堵死，旁通阀会打开，让<strong>没过滤的脏机油</strong>直接进入发动机——宁可让脏油循环，也不能让发动机断油（断油 = 立即报废）。所以滤芯越差、越堵，脏油直通的时间就越长。便宜机滤的问题是：滤纸面积小、过滤精度低、旁通阀开启压力不准、壳体强度不够可能爆开。
+</div>
+
+<p><strong>选购要点：</strong>优先选原厂件或知名品牌（如曼牌、马勒、博世、宝孚、WIX 等）。滤纸褶数多、面积大、有防回流阀（止回阀，冷启动时保持油道有油，减少磨损）的更好。注意：<strong>带止回阀的机滤必须垂直安装才有效</strong>，横向安装的车型靠的是别的设计。</p>
+
+<h3>2.6 空气滤清器：发动机的口罩</h3>
+
+<p>发动机每燃烧 1 升汽油，需要吸入约 <strong>1 万升空气</strong>。空滤就是防止灰尘、砂砾进缸造成"研磨式磨损"的关卡。</p>
+
+<p>失效逻辑很直观：<strong>堵 → 进气阻力增大 → 进气量不足 → 电脑判断为减少喷油 → 动力下降、加速无力、油耗上升</strong>。严重时会导致混合气过浓、积碳增多。</p>
+
+<div class="box ok">
+  <div class="t">✓ 实用技巧</div>
+  <ul style="margin-bottom:0">
+    <li>常规建议 1～2 万公里更换，但可以<strong>每 5000 公里拿出来拍一拍灰尘</strong>（从里往外吹，不要从外往里吹），能显著延长寿命</li>
+    <li>判断标准：把滤芯对着光看，透光明显变差、褶皱间塞满灰，就该换了</li>
+    <li><strong>不要用高压气枪猛吹</strong>纸质滤芯——会把纤维吹破，反而失去过滤能力</li>
+    <li>多尘环境（工地、北方沙尘）建议缩短到 5000～8000 公里更换</li>
+  </ul>
+</div>
+
+<div class="box warn">
+  <div class="t">⚠ "高流量空滤"值不值得改？</div>
+  <p style="margin-bottom:0">市面上的"高流量进气套装"（如 K&N 类可清洗滤芯）确实能降低进气阻力，但代价是<strong>过滤精度下降</strong>，更多细颗粒物进入发动机。对家用车而言，收益微乎其微（进气阻力本来就不是瓶颈），磨损风险却是实打实的。原厂纸质滤芯 + 定期更换，才是理性选择。</p>
+</div>
+
+<h3>2.7 汽油滤清器：容易被忽略的第三个滤</h3>
+<ul>
+  <li><strong>外置式</strong>（在车底油路上）：一般 2～4 万公里更换，便宜，好换</li>
+  <li><strong>内置式</strong>（在油箱里，与油泵一体）：一般 6～10 万公里更换，工时费高</li>
+</ul>
+<p>症状：加速时动力断续、抖动、启动困难。如果你只在固定大加油站加油，可以适当延长；如果常在油品不稳定的地方加油，务必按手册周期换。</p>
+
+<!-- ================= 3 ================= -->
+<h2 id="s3"><span class="num">03</span>别让发动机烧穿：冷却系统</h2>
+
+<p class="lead">发动机工作时，燃烧室温度可达 2000℃ 以上。冷却系统失效的后果比机油失效更快、更致命——从水温报警到拉缸，可能只有几分钟。</p>
+
+<h3>3.1 冷却系统怎么工作</h3>
+
+<figure>
+<svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="发动机冷却系统循环示意图">
+  <defs>
+    <marker id="flow" markerWidth="9" markerHeight="9" refX="6" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1668dc"/>
+    </marker>
+    <marker id="flowHot" markerWidth="9" markerHeight="9" refX="6" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#c0392b"/>
+    </marker>
+  </defs>
+
+  <!-- 发动机缸体 -->
+  <rect x="60" y="60" width="200" height="130" rx="10" fill="#f0f2f6" stroke="#9aa2b1" stroke-width="1.6"/>
+  <text x="160" y="92" font-size="14" font-weight="700" fill="#1a1d23" text-anchor="middle" font-family="sans-serif">发动机缸体</text>
+  <text x="160" y="118" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">燃烧室 2000℃+</text>
+  <text x="160" y="142" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">缸壁内是"水套"</text>
+  <text x="160" y="166" font-size="11.5" fill="#c0392b" text-anchor="middle" font-family="sans-serif">冷却液带走热量</text>
+
+  <!-- 节温器 -->
+  <rect x="285" y="98" width="86" height="54" rx="8" fill="#fffbf0" stroke="#d4a017" stroke-width="1.6"/>
+  <text x="328" y="120" font-size="12.5" font-weight="700" fill="#8a5b00" text-anchor="middle" font-family="sans-serif">节温器</text>
+  <text x="328" y="140" font-size="10.5" fill="#8a5b00" text-anchor="middle" font-family="sans-serif">开关阀门</text>
+
+  <!-- 散热器 -->
+  <rect x="420" y="60" width="200" height="130" rx="10" fill="#eef4ff" stroke="#8ab4f8" stroke-width="1.6"/>
+  <text x="520" y="90" font-size="14" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">散热器（水箱）</text>
+  <!-- 散热片纹理 -->
+  <g stroke="#8ab4f8" stroke-width="1" opacity="0.6">
+    <line x1="440" y1="105" x2="600" y2="105"/>
+    <line x1="440" y1="117" x2="600" y2="117"/>
+    <line x1="440" y1="129" x2="600" y2="129"/>
+    <line x1="440" y1="141" x2="600" y2="141"/>
+    <line x1="440" y1="153" x2="600" y2="153"/>
+    <line x1="440" y1="165" x2="600" y2="165"/>
+  </g>
+  <text x="520" y="183" font-size="11" fill="#1668dc" text-anchor="middle" font-family="sans-serif">与空气换热，降温</text>
+
+  <!-- 水管：发动机 → 节温器 -->
+  <line x1="262" y1="125" x2="283" y2="125" stroke="#c0392b" stroke-width="3.5" marker-end="url(#flowHot)"/>
+  <!-- 节温器 → 散热器 -->
+  <line x1="373" y1="115" x2="418" y2="115" stroke="#c0392b" stroke-width="3.5" marker-end="url(#flowHot)"/>
+  <text x="396" y="103" font-size="10.5" fill="#c0392b" text-anchor="middle" font-family="sans-serif">热水</text>
+
+  <!-- 散热器 → 水泵（下方回流） -->
+  <path d="M520,192 L520,290 L160,290 L160,248" fill="none" stroke="#1668dc" stroke-width="3.5" marker-end="url(#flow)"/>
+  <text x="340" y="308" font-size="11.5" fill="#1668dc" text-anchor="middle" font-family="sans-serif">降温后的冷却液回流</text>
+
+  <!-- 水泵 -->
+  <rect x="100" y="196" width="120" height="52" rx="8" fill="#f0fdf4" stroke="#7cc79a" stroke-width="1.6"/>
+  <text x="160" y="218" font-size="12.5" font-weight="700" fill="#15803d" text-anchor="middle" font-family="sans-serif">水泵</text>
+  <text x="160" y="237" font-size="10.5" fill="#15803d" text-anchor="middle" font-family="sans-serif">由皮带驱动循环</text>
+
+  <!-- 旁通：节温器关闭时 -->
+  <path d="M328,154 L328,232 L262,232" fill="none" stroke="#d4a017" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#flow)"/>
+  <text x="390" y="250" font-size="10.5" fill="#8a5b00" font-family="sans-serif">冷车时走旁通，快速升温</text>
+
+  <!-- 膨胀壶 -->
+  <rect x="420" y="330" width="180" height="52" rx="8" fill="#fff" stroke="#e3e6ec" stroke-width="1.5"/>
+  <text x="510" y="352" font-size="12" font-weight="700" fill="#3d434e" text-anchor="middle" font-family="sans-serif">膨胀壶（副水壶）</text>
+  <text x="510" y="370" font-size="10.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">观察液位的地方</text>
+  <line x1="510" y1="290" x2="510" y2="328" stroke="#9aa2b1" stroke-width="1.6" stroke-dasharray="4 3"/>
+</svg>
+<figcaption>图 3-1 冷却系统闭环循环。核心逻辑：<strong>节温器控制"走不走散热器"</strong>。冷车时关闭（走旁通快速升温），水温到了 85～95℃ 才打开走大循环。</figcaption>
+</figure>
+
+<div class="metaphor">
+<b>为什么要"节温"，不让它一直全速冷却？</b>因为发动机设计工作温度是 90℃ 左右，不是越冷越好。太冷会导致：燃烧不充分（油耗高、积碳多）、机油温度不够（水分排不出去、乳化）、磨损加剧（金属热膨胀不到位，间隙不对）。所以冷车启动后水温迅速升到工作温度，是工程师刻意设计的结果。
+</div>
+
+<h3>3.2 防冻液：不只是"防冻"</h3>
+
+<p>防冻液（冷却液）的正式名字应该叫"乙二醇型冷却液"，它有四个作用：</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>作用</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td><strong>防冻</strong></td><td>降低冰点，避免冬天冻裂缸体和水箱（水结冰体积膨胀约 9%，足以撑裂金属）</td></tr>
+    <tr><td><strong>防沸</strong></td><td>提高沸点（加压系统可达 120℃ 以上不沸腾），防止开锅</td></tr>
+    <tr><td><strong>防腐蚀</strong></td><td>含缓蚀剂，保护铝、铜、铸铁、橡胶、塑料等多种材质</td></tr>
+    <tr><td><strong>防垢</strong></td><td>用去离子水调配，避免水垢堵塞细小的散热水道</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box danger">
+  <div class="t">✕ 三条绝对红线</div>
+  <ol style="margin-bottom:0">
+    <li><strong>不能用自来水代替。</strong>自来水含矿物质，高温下结成水垢堵水道；且冰点只有 0℃，冬天冻裂发动机。应急可以加纯水，但事后必须尽快换成防冻液。</li>
+    <li><strong>不同颜色/类型不能混加。</strong>颜色只是染色标识，代表不同的添加剂配方（如磷酸盐型、硅酸盐型、有机酸型 OAT）。混加可能导致添加剂相互反应，产生絮状沉淀堵住水道。<strong>要混加，先看说明书确认同一规格。</strong></li>
+    <li><strong>热车时绝对不能打开水箱盖/膨胀壶盖！</strong>系统内有 1.5～2 个大气压、120℃ 的高温液体，打开瞬间会喷出造成严重烫伤。<strong>必须等完全冷却（至少 1 小时）。</strong></li>
+  </ol>
+</div>
+
+<h4>更换周期与液位检查</h4>
+<ul>
+  <li><strong>周期：</strong>传统型（无机酸）2 年 / 4 万公里；长效型（OAT 有机酸）通常 5 年 / 10 万公里，以手册为准</li>
+  <li><strong>液位：</strong>看膨胀壶侧面的 MIN/MAX 刻度线，冷车状态下应在两者之间</li>
+  <li><strong>液位持续下降 = 有泄漏</strong>，需要检查水管接头、水泵密封、水箱、缸垫。水箱里的水"消失得莫名其妙"绝不要只补水了事</li>
+</ul>
+
+<h3>3.3 最容易搞混的：水温表 vs 机油压力灯</h3>
+
+<div class="box warn">
+  <div class="t">⚠ 两个报警必须分清，处理方式完全相反</div>
+  <div class="tw" style="margin-top:8px">
+  <table>
+    <thead><tr><th>报警</th><th>图标特征</th><th>含义</th><th>正确处理</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>水温过高</strong></td>
+        <td>温度计浸在水波纹中，通常红/橙色</td>
+        <td>冷却系统出问题，继续开将拉缸</td>
+        <td>靠边停车、熄火、<strong>等冷却</strong>，检查液位和风扇。<strong>切勿立即开盖</strong>。若持续高温，叫拖车</td>
+      </tr>
+      <tr>
+        <td><strong>机油压力低</strong></td>
+        <td>油壶形状（壶嘴滴油），红色</td>
+        <td>润滑系统失压，几十秒内可毁发动机</td>
+        <td><strong>立即熄火停车</strong>，不要试图再启动。检查油位，缺油则补充后仍报警必须拖车</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<h3>3.4 冷却系统的三个易损件</h3>
+<ul>
+  <li><strong>节温器：</strong>坏了有两种表现——卡在关闭（水温过高、开锅）或卡在打开（水温始终偏低、冬天暖风不热、油耗升高）。后者容易被误认为"正常"，实则需要更换</li>
+  <li><strong>水泵：</strong>常见失效是轴承异响（冷车时"沙沙"声）、密封漏液。通常和正时皮带一起换（因为都在同一位置，工时费重叠）</li>
+  <li><strong>散热风扇：</strong>停车怠速时水温升高、行驶时正常，大概率是风扇不转（检查风扇电机、继电器、温度传感器）</li>
+</ul>
+
+<!-- ================= 4 ================= -->
+<h2 id="s4"><span class="num">04</span>发动机的三根火柴：火花塞与点火</h2>
+
+<p class="lead">汽油发动机靠"点火"点燃混合气。火花塞就是那根火柴——它决定了燃烧是否充分、动力是否顺滑、油耗是否正常。</p>
+
+<h3>4.1 火花塞在干什么，为什么会损耗</h3>
+
+<p>火花塞在气缸内承受极端环境：<strong>2000℃ 以上的燃烧高温、每分钟上千次的高压电火花、燃烧产生的化学腐蚀</strong>。每次跳火都会从电极上"啃"掉一点点金属。</p>
+
+<figure>
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="火花塞电极间隙磨损示意">
+  <!-- 新火花塞 -->
+  <g>
+    <rect x="80" y="60" width="34" height="120" fill="#e0e4ea" stroke="#9aa2b1" stroke-width="1.4"/>
+    <line x1="97" y1="180" x2="97" y2="212" stroke="#4a5160" stroke-width="7" stroke-linecap="round"/>
+    <line x1="130" y1="212" x2="130" y2="188" stroke="#4a5160" stroke-width="7" stroke-linecap="round"/>
+    <line x1="130" y1="188" x2="112" y2="188" stroke="#4a5160" stroke-width="7" stroke-linecap="round"/>
+    <line x1="103" y1="212" x2="125" y2="212" stroke="#4a5160" stroke-width="7" stroke-linecap="round"/>
+    <text x="105" y="252" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle" font-family="sans-serif">新品：间隙 0.8～1.1mm</text>
+    <text x="105" y="272" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">电弧集中、跳火强力</text>
+  </g>
+
+  <!-- 磨损火花塞 -->
+  <g transform="translate(230,0)">
+    <rect x="80" y="60" width="34" height="120" fill="#d8dce3" stroke="#9aa2b1" stroke-width="1.4"/>
+    <line x1="97" y1="172" x2="97" y2="200" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>
+    <line x1="130" y1="204" x2="130" y2="186" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>
+    <line x1="130" y1="186" x2="118" y2="186" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>
+    <line x1="103" y1="204" x2="122" y2="204" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>
+    <!-- 间隙标注 -->
+    <line x1="99" y1="172" x2="99" y2="200" stroke="#c0392b" stroke-width="1" stroke-dasharray="2 2"/>
+    <text x="80" y="150" font-size="11" fill="#c0392b" font-family="sans-serif">间隙变大</text>
+    <text x="105" y="252" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle" font-family="sans-serif">中期：电极烧蚀变圆</text>
+    <text x="105" y="272" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">需要更高电压才能跳火</text>
+  </g>
+
+  <!-- 失效火花塞 -->
+  <g transform="translate(460,0)">
+    <rect x="80" y="60" width="34" height="120" fill="#cfd4dc" stroke="#9aa2b1" stroke-width="1.4"/>
+    <line x1="97" y1="164" x2="97" y2="196" stroke="#8b929e" stroke-width="4" stroke-linecap="round"/>
+    <line x1="130" y1="200" x2="130" y2="184" stroke="#8b929e" stroke-width="4" stroke-linecap="round"/>
+    <line x1="130" y1="184" x2="122" y2="184" stroke="#8b929e" stroke-width="4" stroke-linecap="round"/>
+    <line x1="103" y1="200" x2="120" y2="200" stroke="#8b929e" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="97" cy="160" r="5" fill="#3a2a18"/>
+    <circle cx="130" cy="180" r="4" fill="#3a2a18"/>
+    <text x="105" y="252" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle" font-family="sans-serif">失效：积碳短路 / 漏火</text>
+    <text x="105" y="272" font-size="11.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">失火、抖动、油耗飙升</text>
+  </g>
+</svg>
+<figcaption>图 4-1 火花塞电极的磨损过程。间隙超出规格后，<strong>点火线圈需要更高电压才能击穿</strong>，超过极限就会"失火"（misfire）——表现为怠速抖动、动力下降、故障灯亮。</figcaption>
+</figure>
+
+<h3>4.2 三种火花塞的选择</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th>类型</th><th>电极材质</th><th>寿命</th><th>价格（单支）</th><th>特点</th></tr></thead>
+  <tbody>
+    <tr><td><strong>镍合金</strong></td><td>镍铜合金</td><td>2～4 万公里</td><td>低</td><td>经济型，需频繁更换</td></tr>
+    <tr><td><strong>铂金</strong></td><td>铂金</td><td>4～6 万公里</td><td>中</td><td>性价比均衡</td></tr>
+    <tr><td><strong>铱金</strong></td><td>铱合金</td><td>6～10 万公里</td><td>高</td><td>电极极细（0.4~0.6mm），点火能量集中，冷启动和燃烧效率最好</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box key">
+  <div class="t">✓ 选购建议</div>
+  <p style="margin-bottom:0">升级到铱金是少数"确实有效且安全"的升级（不同于高流量空滤）。因为铱金电极更细，所需击穿电压更低，点火更稳定，对冷启动、怠速品质、油耗都有可感知的改善，寿命还更长。<strong>唯一必须注意：热值要匹配原厂。</strong>热值选错（过冷或过热）会导致积碳或烧蚀，宁可选原厂同型号。</p>
+</div>
+
+<h4>更换要点</h4>
+<ul>
+  <li><strong>必须四缸一起换</strong>，不要只换坏的那一个（新旧电极差异会导致各缸做功不均）</li>
+  <li>更换时必须检查间隙（外购件有时未按你的车型预调）</li>
+  <li><strong>注意扭矩</strong>：缸盖多为铝合金，火花塞拧得过紧会损坏螺纹（维修成本极高），过松会漏气。按手册扭矩值，用扭矩扳手上紧</li>
+  <li>拆下时顺手看电极颜色诊断燃烧状态（见下表）</li>
+</ul>
+
+<div class="tw">
+<table>
+  <thead><tr><th>电极颜色</th><th>说明燃烧状态</th></tr></thead>
+  <tbody>
+    <tr><td>浅棕色 / 灰褐色</td><td>正常，混合气比例良好</td></tr>
+    <tr><td>黑色油污状</td><td>混合气过浓、烧机油、或火花塞热值过冷</td></tr>
+    <tr><td>黑色干燥积碳</td><td>长期低速短途、混合气过浓、点火能量不足</td></tr>
+    <tr><td>白色 / 有熔融点</td><td>混合气过稀、点火提前角过大、热值过热 —— 严重时会导致爆震、烧活塞</td></tr>
+    <tr><td>棕红色锈色沉积</td><td>燃油中添加剂的金属沉积（如劣质汽油的锰剂），非故障</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>4.3 点火线圈：火花塞的"变压器"</h3>
+<p>电瓶只有 12V，无法击穿火花塞间隙（需要 2～4 万伏），所以需要点火线圈升压。线圈失效通常表现为：单缸失火、怠速明显抖动、动力顿挫。</p>
+<p><strong>注意：</strong>火花塞间隙过大或积碳严重，会让线圈长期超高负荷工作，最终烧毁线圈。所以<strong>火花塞超期使用，代价可能是连带换线圈</strong>。</p>
+
+<!-- ================= 5 ================= -->
+<h2 id="s5"><span class="num">05</span>传动的两种世界：变速箱油</h2>
+
+<p class="lead">变速箱油是最容易被遗忘的一项——很多车主从买车到卖车都没换过。这是相当危险的。</p>
+
+<h3>5.1 变速箱油在做什么</h3>
+
+<p>变速箱油同时承担：<strong>润滑齿轮轴承、传递液压（自动变速箱靠油压控制换挡）、带走热量、传递动力（液力变矩器）</strong>。它在封闭环境里工作，温度比机油更高，剪切力更大，所以劣化方式更隐蔽——不会像机油那样变黑很明显，但添加剂在持续消耗。</p>
+
+<div class="metaphor">
+<b>比喻：</b>手动变速箱（MT）的油像"单纯给齿轮涂的润滑脂"，任务单一、寿命很长。自动变速箱（AT）的油像"液压系统的工作液 + 润滑油"二合一，还带着摩擦片磨下来的粉末，任务重得多，寿命短得多。
+</div>
+
+<h3>5.2 各种变速箱的差异</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th>类型</th><th>结构特点</th><th>油液</th><th>换油建议</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>MT 手动</strong></td>
+      <td>齿轮啮合，靠离合器连接</td>
+      <td>齿轮油（按 API GL-4/GL-5，黏度如 75W-90）</td>
+      <td>4～6 万公里（很多厂家写"终身"，实际建议 6 万换一次）</td>
+    </tr>
+    <tr>
+      <td><strong>AT 液力自动</strong></td>
+      <td>液力变矩器 + 行星齿轮 + 湿式摩擦片</td>
+      <td>专用 ATF（型号必须严格匹配）</td>
+      <td>4～8 万公里，具体看手册和驾驶工况</td>
+    </tr>
+    <tr>
+      <td><strong>CVT 无级</strong></td>
+      <td>钢带/钢链在锥轮间传动</td>
+      <td>专用 CVT 油（承受高摩擦，配方特殊）</td>
+      <td>4～6 万公里，<strong>比 AT 更需按时换</strong>。CVT 对油质极敏感，油劣化会导致钢带打滑、链条磨损，维修成本极高</td>
+    </tr>
+    <tr>
+      <td><strong>DCT/DSG 双离合</strong></td>
+      <td>两套离合器交替工作</td>
+      <td>部分车型分"齿轮油"和"液压油"两套，部分共用</td>
+      <td>4～6 万公里；干式双离合还需关注离合器片寿命</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box danger">
+  <div class="t">✕ 变速箱油三大禁忌</div>
+  <ol style="margin-bottom:0">
+    <li><strong>绝不能混用型号。</strong>ATF、CVT 油、DCT 油配方完全不同，加错会立刻损坏变速箱。<strong>必须核对手册上写的具体规格号</strong>（如 Toyota WS、ZF LifeguardFluid 8、VW G 052 529 等）。</li>
+    <li><strong>绝不能用"循环机"换高里程车的油。</strong>高里程（10 万公里以上）且从未换过油的变速箱，内部靠油泥和磨屑"维持"了密封与摩擦特性。用循环机一次性把油全换掉，会导致摩擦系数突变 → 打滑、换挡冲击，甚至报废。<strong>高里程车应用重力换油法，分次少量更换。</strong></li>
+    <li><strong>换油不等于可以修变速箱。</strong>如果已有明显打滑、异响，换油通常救不回来，需要专业维修。</li>
+  </ol>
+</div>
+
+<h3>5.3 换油方式：重力换 vs 循环机换</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th>方式</th><th>原理</th><th>换油率</th><th>用量</th><th>适用</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>重力换油</strong></td>
+      <td>拧开放油螺栓让油自然流出</td>
+      <td>约 40～50%</td>
+      <td>约 4～6 升</td>
+      <td>高里程车、首次换油、稳妥保守</td>
+    </tr>
+    <tr>
+      <td><strong>循环机换油</strong></td>
+      <td>用机器把新油压进去，把旧油顶出来（需要接在油冷器管路上）</td>
+      <td>85～95%</td>
+      <td>约 10～14 升</td>
+      <td>低里程、规律保养的车</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>聪明的做法：</strong>重力换油后，跑 1～2 万公里再换一次，通过两次重力换油累积达到 70% 以上的换油率，既安全又经济，尤其适合没换过油的老车。</p>
+
+<div class="box warn">
+  <div class="t">⚠ 需要警惕的信号</div>
+  <ul style="margin-bottom:0">
+    <li>换挡时有明显冲击感或延迟（挂 D 挡后 1～2 秒才动）</li>
+    <li>加速时发动机转速上升但车速跟不上（打滑）</li>
+    <li>变速箱油有焦糊味，或颜色变成深褐色/黑色</li>
+    <li>仪表盘出现"变速箱过热"或"变速箱故障"提示</li>
+  </ul>
+  <p style="margin-top:8px;margin-bottom:0">出现以上任一信号，尽快检查，不要拖。</p>
+</div>
+
+<!-- ================= 6 ================= -->
+<h2 id="s6"><span class="num">06</span>停得住比跑得快重要：制动系统</h2>
+
+<p class="lead">制动系统是唯一"用一次就损耗一次"的系统，也是保养中最不能妥协的部分。</p>
+
+<h3>6.1 刹车是怎么把车停下来的</h3>
+
+<p>核心原理只有一句话：<strong>用液压把脚的力放大，让刹车片夹紧刹车盘，靠摩擦力把动能变成热能散掉。</strong></p>
+
+<figure>
+<svg viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="刹车液压放大与盘式制动原理">
+  <defs>
+    <marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#1668dc"/>
+    </marker>
+  </defs>
+
+  <!-- 踏板 -->
+  <path d="M60,60 L60,140 L110,150 L110,70 z" fill="#f0f2f6" stroke="#9aa2b1" stroke-width="1.6" transform="rotate(-8 85 100)"/>
+  <text x="82" y="46" font-size="12" fill="#3d434e" text-anchor="middle" font-family="sans-serif">刹车踏板</text>
+  <text x="30" y="182" font-size="11.5" fill="#6b7280" font-family="sans-serif">脚力约 30～50 kg</text>
+
+  <!-- 推杆 -->
+  <line x1="112" y1="105" x2="160" y2="105" stroke="#9aa2b1" stroke-width="3"/>
+
+  <!-- 真空助力器 -->
+  <rect x="160" y="72" width="88" height="66" rx="8" fill="#eef4ff" stroke="#8ab4f8" stroke-width="1.6"/>
+  <text x="204" y="98" font-size="12" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">真空</text>
+  <text x="204" y="115" font-size="12" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">助力器</text>
+  <text x="204" y="132" font-size="10" fill="#1668dc" text-anchor="middle" font-family="sans-serif">放大 3～4 倍</text>
+
+  <!-- 主缸 -->
+  <line x1="248" y1="105" x2="282" y2="105" stroke="#9aa2b1" stroke-width="3"/>
+  <rect x="282" y="74" width="76" height="62" rx="8" fill="#fff" stroke="#9aa2b1" stroke-width="1.6"/>
+  <text x="320" y="100" font-size="12" font-weight="700" fill="#3d434e" text-anchor="middle" font-family="sans-serif">制动</text>
+  <text x="320" y="117" font-size="12" font-weight="700" fill="#3d434e" text-anchor="middle" font-family="sans-serif">主缸</text>
+
+  <!-- 油管 -->
+  <path d="M358,105 L410,105 L410,60" fill="none" stroke="#1668dc" stroke-width="2.4" marker-end="url(#ar2)"/>
+  <path d="M358,105 L410,105 L410,152" fill="none" stroke="#1668dc" stroke-width="2.4" marker-end="url(#ar2)"/>
+  <text x="400" y="30" font-size="11" fill="#1668dc" font-family="sans-serif">刹车油管</text>
+
+  <!-- 卡钳 + 盘 上方 -->
+  <g transform="translate(0,-8)">
+    <circle cx="510" cy="58" r="46" fill="#f0f2f6" stroke="#9aa2b1" stroke-width="2"/>
+    <circle cx="510" cy="58" r="16" fill="#fff" stroke="#9aa2b1" stroke-width="1.5"/>
+    <rect x="556" y="40" width="34" height="36" rx="5" fill="#eef4ff" stroke="#1668dc" stroke-width="1.8"/>
+    <rect x="546" y="42" width="12" height="32" rx="3" fill="#f59e0b" stroke="#c2410c" stroke-width="1.4"/>
+    <text x="600" y="34" font-size="12" font-weight="700" fill="#1a1d23" font-family="sans-serif">刹车盘 + 卡钳</text>
+    <text x="600" y="52" font-size="11" fill="#c2410c" font-family="sans-serif">橙色 = 刹车片</text>
+    <text x="600" y="70" font-size="11" fill="#6b7280" font-family="sans-serif">前轮为主，承担约</text>
+    <text x="600" y="86" font-size="11" fill="#6b7280" font-family="sans-serif">70% 制动力</text>
+  </g>
+
+  <!-- 压力放大公式 -->
+  <rect x="60" y="216" width="560" height="94" rx="10" fill="#eef4ff" stroke="#cfe0ff" stroke-width="1.5"/>
+  <text x="340" y="246" font-size="14" font-weight="700" fill="#1668dc" text-anchor="middle" font-family="sans-serif">液压放大原理（帕斯卡定律）</text>
+  <text x="340" y="274" font-size="12.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">主缸活塞小、轮缸活塞大 → 压强相等，但受力面积大 → 输出力被放大</text>
+  <text x="340" y="296" font-size="12.5" fill="#3d434e" text-anchor="middle" font-family="sans-serif">再加上真空助力器把脚力放大 3～4 倍，最终刹车片夹紧力可达数百公斤</text>
+</svg>
+<figcaption>图 6-1 制动系统：从脚到车轮的两级放大。<strong>关键推论：刹车油里混入气体（可压缩），踏板就会变软、行程变长——这就是要定期换刹车油的原因。</strong></figcaption>
+</figure>
+
+<h3>6.2 刹车油：最容易被忽视的"吸水海绵"</h3>
+
+<p>刹车油（制动液）有一个致命特性：<strong>它会持续吸收空气中的水分</strong>，而且这个过程无法阻止（油壶盖有通气孔，刹车系统不是绝对密封的）。</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>含水量</th><th>后果</th><th>处理</th></tr></thead>
+  <tbody>
+    <tr><td>&lt; 1%</td><td>状态良好</td><td>继续使用</td></tr>
+    <tr><td>1% ～ 2%</td><td>沸点开始下降，激烈驾驶时可能气阻</td><td>计划更换</td></tr>
+    <tr><td>2% ～ 3%</td><td>沸点大幅下降（可能降到 150℃ 以下）</td><td><strong>尽快更换</strong></td></tr>
+    <tr><td>&gt; 3%</td><td>连续下坡或急刹后水分沸腾产生气泡 → <strong>刹车失灵</strong></td><td>立即更换</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="metaphor">
+<b>为什么会失灵：</b>水在 100℃ 沸腾变成水蒸气，而气体是<strong>可压缩</strong>的。你踩下踏板时，压力首先用来压缩气泡，而不是推动刹车片——踏板会"软绵绵地踩到底"，但车几乎不减速。高温场景（长下坡连续制动、赛道驾驶）最容易触发。这就是刹车油必须每 2 年更换的物理原因（DOT4 通常 2 年 / 4 万公里）。
+</div>
+
+<p><strong>选型注意：</strong>DOT3 / DOT4 / DOT5.1 是醇醚型（可混加），DOT5 是硅油型（<strong>不可与其它混加</strong>）。绝大多数家用车用 DOT4。刹车油有强烈的吸水性，<strong>开封后未用完的不建议长期存放再用</strong>。</p>
+
+<h3>6.3 刹车片：怎么判断该换了</h3>
+
+<figure>
+<svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="刹车片厚度判断">
+  <text x="40" y="28" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">刹车片厚度对照（含背板总厚度参考）</text>
+
+  <!-- 新的 -->
+  <g>
+    <rect x="60" y="60" width="30" height="60" fill="#9aa2b1" stroke="#6b7280" stroke-width="1.4"/>
+    <rect x="90" y="60" width="66" height="60" fill="#f59e0b" stroke="#c2410c" stroke-width="1.4"/>
+    <line x1="95" y1="52" x2="151" y2="52" stroke="#6b7280" stroke-width="1"/>
+    <text x="123" y="46" font-size="11" fill="#6b7280" text-anchor="middle" font-family="sans-serif">摩擦材料 ≈ 12mm</text>
+    <text x="105" y="146" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle" font-family="sans-serif">✓ 全新</text>
+    <text x="105" y="164" font-size="11" fill="#6b7280" text-anchor="middle" font-family="sans-serif">背板 4mm + 摩擦材 12mm</text>
+  </g>
+
+  <!-- 还能用 -->
+  <g transform="translate(190,0)">
+    <rect x="60" y="60" width="30" height="60" fill="#9aa2b1" stroke="#6b7280" stroke-width="1.4"/>
+    <rect x="90" y="60" width="34" height="60" fill="#f59e0b" stroke="#c2410c" stroke-width="1.4"/>
+    <text x="105" y="146" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle" font-family="sans-serif">△ 可再跑几千公里</text>
+    <text x="105" y="164" font-size="11" fill="#6b7280" text-anchor="middle" font-family="sans-serif">摩擦材料剩 6mm 左右</text>
+  </g>
+
+  <!-- 该换 -->
+  <g transform="translate(380,0)">
+    <rect x="60" y="60" width="30" height="60" fill="#9aa2b1" stroke="#6b7280" stroke-width="1.4"/>
+    <rect x="90" y="60" width="14" height="60" fill="#f59e0b" stroke="#c2410c" stroke-width="1.4"/>
+    <text x="105" y="146" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle" font-family="sans-serif">✕ 立即更换</text>
+    <text x="105" y="164" font-size="11" fill="#6b7280" text-anchor="middle" font-family="sans-serif">摩擦材料 &lt; 3mm</text>
+  </g>
+
+  <!-- 报警片 -->
+  <g transform="translate(560,0)">
+    <rect x="20" y="60" width="30" height="60" fill="#9aa2b1" stroke="#6b7280" stroke-width="1.4"/>
+    <rect x="50" y="60" width="6" height="60" fill="#f59e0b" stroke="#c2410c" stroke-width="1.4"/>
+    <path d="M50,120 L42,132" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/>
+    <text x="45" y="146" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle" font-family="sans-serif">报警片</text>
+    <text x="45" y="164" font-size="11" fill="#6b7280" text-anchor="middle" font-family="sans-serif">刮盘发出尖啸声</text>
+  </g>
+</svg>
+<figcaption>图 6-2 刹车片厚度的三个临界状态。多数刹车片上带有一个金属"报警片"，磨到极限时会蹭到刹车盘发出尖锐金属摩擦声——<strong>听到这种声音就必须立即处理</strong>。</figcaption>
+</figure>
+
+<div class="box warn">
+  <div class="t">⚠ 刹车片不只是"磨薄"，还会"变质"</div>
+  <p style="margin-bottom:0">摩擦材料在长期高温后会<strong>硬化、失去摩擦系数</strong>（表现为刹车距离变长、需要踩得更重）。所以即使厚度还有，如果刹车脚感明显变差，也要检查。此外，长期低温短途行驶的刹车片容易<strong>生锈卡滞</strong>（导销不回位），导致刹车拖滞、油耗上升、刹车盘一侧异常磨损。</p>
+</div>
+
+<h4>刹车片的类型与选择</h4>
+<div class="tw">
+<table>
+  <thead><tr><th>类型</th><th>摩擦系数</th><th>噪音/粉尘</th><th>刹车盘磨损</th><th>适合</th></tr></thead>
+  <tbody>
+    <tr><td>陶瓷片</td><td>中高，稳定</td><td>低噪音、低粉尘</td><td>较温和</td><td>家用车首选</td></tr>
+    <tr><td>半金属片</td><td>高，但冷车略差</td><td>噪音较大、粉尘多</td><td>磨损较快</td><td>预算优先</td></tr>
+    <tr><td>低金属/NAO</td><td>中</td><td>均衡</td><td>中等</td><td>原厂常用</td></tr>
+    <tr><td>赛道用金属片</td><td>很高（需工作温度）</td><td>尖锐噪音、粉尘大</td><td>磨损很快</td><td>不适合日常</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>6.4 刹车盘</h3>
+<ul>
+  <li><strong>厚度判定：</strong>刹车盘边缘有"最小厚度"标识（如 22mm），用千分尺实测。磨到限值必须换，<strong>不能车削后继续用到极限以下</strong>（太薄会过热变形、甚至开裂）</li>
+  <li><strong>变形：</strong>刹车时方向盘抖动（前盘变形）或踏板脉动，多为盘面受热不均变形，需要更换或车削</li>
+  <li><strong>沟槽/锈斑：</strong>表面深沟槽或大面积锈蚀需要更换</li>
+  <li><strong>一般规律：</strong>换 2 次刹车片配 1 次刹车盘，具体按实测</li>
+</ul>
+
+<h3>6.5 刹车油的更换要点</h3>
+<div class="box key">
+  <div class="t">✓ 更换流程关键点</div>
+  <ul style="margin-bottom:0">
+    <li>必须<strong>"排空气"</strong>：按顺序（通常从最远的轮开始）逐个打开放气螺丝，一边踩踏板一边放油，直到出来的油无气泡</li>
+    <li>液位要随加随补，<strong>不能让储油罐抽干</strong>，否则空气进入主缸，需重新排气</li>
+    <li>更换后踏板应该变"硬"、行程变短。如果仍然软，说明没排干净</li>
+    <li>换完检查四个轮是否有渗漏</li>
+  </ul>
+</div>
+
+<!-- ================= 7 ================= -->
+<h2 id="s7"><span class="num">07</span>转向与悬挂：底盘件怎么判断寿命</h2>
+
+<p class="lead">这一节的项目通常"不影响立刻开走"，但会影响操控稳定性和轮胎寿命，而且异响来源往往就在这里。</p>
+
+<h3>7.1 底盘上到底有哪些件</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th>部件</th><th>作用</th><th>失效表现</th><th>判断方法</th></tr></thead>
+  <tbody>
+    <tr><td><strong>减震器</strong></td><td>控制弹簧回弹，保持轮胎贴地</td><td>过减速带余震多、连续跳动、刹车点头严重、轮胎局部磨损</td><td>车身四角按压后松手，回弹超过 1～2 次；看是否漏油（筒身油渍）</td></tr>
+    <tr><td><strong>摆臂/控制臂胶套</strong></td><td>连接悬架与车身，提供柔性铰接</td><td>过坎"咯噔"异响、方向跑偏、轮胎偏磨</td><td>撬棍撬动检查间隙，看橡胶是否开裂、脱胶</td></tr>
+    <tr><td><strong>稳定杆胶套 / 拉杆</strong></td><td>抑制侧倾</td><td>过坎"咚咚"敲击声、转弯侧倾大</td><td>目视橡胶老化、用手晃动拉杆查间隙</td></tr>
+    <tr><td><strong>球头（下球头、横拉杆球头）</strong></td><td>转向节与悬架的转动关节</td><td>方向虚位大、颠簸路面异响、<strong>严重时车轮脱落</strong></td><td>顶起后上下晃动轮胎查间隙；防尘套破裂要尽快换</td></tr>
+    <tr><td><strong>转向助力系统</strong></td><td>放大转向力</td><td>打方向沉、有"嗡嗡"声、漏油</td><td>检查助力油液位与颜色；电动助力则无油可查</td></tr>
+    <tr><td><strong>四轮定位</strong></td><td>设定车轮角度（前束、外倾、主销后倾）</td><td>跑偏、方向盘不正、轮胎异常磨损</td><td>出现上述任一情况、更换悬挂件后、撞击后，做定位</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box key">
+  <div class="t">✓ 减震器的隐藏价值</div>
+  <p style="margin-bottom:0">很多人以为减震器只管"舒适"。其实它更重要的作用是<strong>让轮胎始终保持贴地</strong>。减震器失效 → 轮胎上下跳动 → 接地面积时有时无 → <strong>刹车距离显著变长、湿滑路面极易失控</strong>。所以减震器也是安全件，不是舒适件。</p>
+</div>
+
+<h3>7.2 助力转向油（液压助力车型）</h3>
+<ul>
+  <li>一般 4～6 万公里或 2～3 年更换</li>
+  <li>症状：打方向变沉、有异响（尤其冷车）、油液变黑或有金属屑</li>
+  <li><strong>注意：</strong>现代许多车已改为电动助力（EPS），没有助力油，无需保养此项</li>
+</ul>
+
+<!-- ================= 8 ================= -->
+<h2 id="s8"><span class="num">08</span>轮胎：唯一接触地面的 4 张名片</h2>
+
+<p class="lead">轮胎是性价比最高的安全检查项。四条轮胎的接地面积加起来只有一张 A4 纸大小，却要传递所有加速、制动和转向的力。</p>
+
+<h3>8.1 看懂轮胎侧面的密码</h3>
+
+<figure>
+<svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="轮胎规格标识解读">
+  <!-- 轮胎轮廓 -->
+  <ellipse cx="340" cy="150" rx="270" ry="120" fill="none" stroke="#9aa2b1" stroke-width="2"/>
+  <!-- 中心大字规格 -->
+  <text x="340" y="112" font-size="34" font-weight="800" fill="#1a1d23" text-anchor="middle" font-family="monospace" letter-spacing="1">225/45 R 17</text>
+  <text x="340" y="150" font-size="20" font-weight="700" fill="#3d434e" text-anchor="middle" font-family="monospace" letter-spacing="2">91 V</text>
+  <text x="340" y="192" font-size="15" fill="#6b7280" text-anchor="middle" font-family="monospace" letter-spacing="1">DOT XXXX 2326</text>
+
+  <!-- 引线说明 -->
+  <line x1="196" y1="98" x2="90" y2="60" stroke="#1668dc" stroke-width="1.3"/>
+  <text x="86" y="52" font-size="11.5" fill="#1668dc" font-family="sans-serif" text-anchor="end">225 = 胎宽 225mm</text>
+
+  <line x1="252" y1="106" x2="150" y2="252" stroke="#1668dc" stroke-width="1.3"/>
+  <text x="146" y="270" font-size="11.5" fill="#1668dc" font-family="sans-serif" text-anchor="middle">45 = 扁平比 45%</text>
+
+  <line x1="330" y1="118" x2="260" y2="270" stroke="#1668dc" stroke-width="1.3"/>
+  <text x="256" y="288" font-size="11.5" fill="#1668dc" font-family="sans-serif" text-anchor="middle">R = 子午线结构</text>
+
+  <line x1="420" y1="106" x2="530" y2="60" stroke="#1668dc" stroke-width="1.3"/>
+  <text x="534" y="52" font-size="11.5" fill="#1668dc" font-family="sans-serif">17 = 轮辋直径 17 英寸</text>
+
+  <line x1="330" y1="150" x2="480" y2="248" stroke="#c2410c" stroke-width="1.3"/>
+  <text x="484" y="262" font-size="11.5" fill="#c2410c" font-family="sans-serif">91 = 载重指数（615kg）</text>
+  <text x="484" y="280" font-size="11.5" fill="#c2410c" font-family="sans-serif">V = 速度级别（240km/h）</text>
+
+  <line x1="410" y1="192" x2="540" y2="160" stroke="#6b7280" stroke-width="1.3"/>
+  <text x="544" y="156" font-size="11.5" fill="#6b7280" font-family="sans-serif">DOT 后 4 位 = 生产日期</text>
+  <text x="544" y="174" font-size="11.5" fill="#6b7280" font-family="sans-serif">2326 → 26年第23周</text>
+</svg>
+<figcaption>图 8-1 轮胎规格标识。买轮胎时<strong>规格必须与原车一致</strong>（可升级但需计算外径误差 &lt; 3%，且不能降低载重/速度级别）。</figcaption>
+</figure>
+
+<h3>8.2 三个必查项</h3>
+
+<h4>① 胎压——每月必查</h4>
+<p>胎压是最容易被低估的一项。它的影响是全方位的：</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>胎压状态</th><th>后果</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>偏低</strong></td>
+      <td>胎侧反复弯折发热 → 帘布层疲劳 → 高速时<strong>爆胎</strong>；滚动阻力大 → 油耗升高；胎肩异常磨损；操控变迟钝</td>
+    </tr>
+    <tr>
+      <td><strong>偏高</strong></td>
+      <td>接地面积减小 → 刹车距离变长；胎面中部异常磨损；滤震变差；更易被扎穿</td>
+    </tr>
+    <tr>
+      <td><strong>四轮不一致</strong></td>
+      <td>跑偏、刹车跑偏、差速器额外负担</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box key">
+  <div class="t">✓ 胎压的正确读法</div>
+  <ul style="margin-bottom:0">
+    <li>标准值在<strong>驾驶侧门框标签</strong>或油箱盖内侧，不在轮胎侧面（胎侧标注的是轮胎最大承载胎压，不是推荐值）</li>
+    <li>标签上通常分"轻载"和"满载"两组，按实际使用选</li>
+    <li><strong>必须在冷车时测量</strong>（行驶后轮胎升温，胎压会上升约 0.2～0.3 bar，测出来偏高是假象）</li>
+    <li>胎压随气温变化：气温每降 10℃，胎压约降 0.1 bar。入冬前务必补气</li>
+    <li>建议每月检查一次，跑长途前必查</li>
+  </ul>
+</div>
+
+<h4>② 磨损——看磨损指示块</h4>
+
+<figure>
+<svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胎面磨损判断">
+  <!-- 正常 -->
+  <g>
+    <rect x="50" y="50" width="160" height="80" rx="8" fill="#3d434e"/>
+    <g stroke="#9aa2b1" stroke-width="5">
+      <line x1="62" y1="66" x2="198" y2="66"/>
+      <line x1="62" y1="94" x2="198" y2="94"/>
+      <line x1="62" y1="122" x2="198" y2="122"/>
+    </g>
+    <rect x="118" y="70" width="16" height="24" fill="#e0e4ea"/>
+    <text x="130" y="156" font-size="13" font-weight="700" fill="#15803d" text-anchor="middle" font-family="sans-serif">✓ 花纹深，指示块未露出</text>
+    <text x="130" y="176" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">沟深 ≥ 3mm</text>
+  </g>
+
+  <!-- 临界 -->
+  <g transform="translate(180,0)">
+    <rect x="50" y="50" width="160" height="80" rx="8" fill="#4a5160"/>
+    <g stroke="#9aa2b1" stroke-width="3.6">
+      <line x1="62" y1="68" x2="198" y2="68"/>
+      <line x1="62" y1="94" x2="198" y2="94"/>
+      <line x1="62" y1="120" x2="198" y2="120"/>
+    </g>
+    <rect x="118" y="70" width="16" height="24" fill="#e0e4ea"/>
+    <text x="130" y="156" font-size="13" font-weight="700" fill="#c2410c" text-anchor="middle" font-family="sans-serif">△ 花纹变浅，该计划更换</text>
+    <text x="130" y="176" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">沟深 1.6～3mm，雨地已明显打滑</text>
+  </g>
+
+  <!-- 极限 -->
+  <g transform="translate(360,0)">
+    <rect x="50" y="50" width="160" height="80" rx="8" fill="#5a6070"/>
+    <g stroke="#9aa2b1" stroke-width="2">
+      <line x1="62" y1="70" x2="198" y2="70"/>
+      <line x1="62" y1="94" x2="198" y2="94"/>
+      <line x1="62" y1="118" x2="198" y2="118"/>
+    </g>
+    <rect x="118" y="70" width="16" height="24" fill="#f59e0b"/>
+    <text x="130" y="156" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle" font-family="sans-serif">✕ 指示块与胎面齐平</text>
+    <text x="130" y="176" font-size="11.5" fill="#6b7280" text-anchor="middle" font-family="sans-serif">沟深 1.6mm = 法定极限，必须换</text>
+  </g>
+</svg>
+<figcaption>图 8-2 磨损指示块（TWI，Tread Wear Indicator）。位于主沟槽内的小凸起，高度 1.6mm，是各国法定的最小花纹深度。<strong>建议在沟深 3mm 时就开始计划更换，而不是等到 1.6mm。</strong></figcaption>
+</figure>
+
+<div class="box danger">
+  <div class="t">✕ 花纹深度与刹车距离的关系（湿滑路面）</div>
+  <p style="margin-bottom:0">花纹的作用是<strong>排水</strong>。水膜厚度超过花纹深度时，轮胎会"浮"在水面上（水滑现象），此时无论 ABS 还是 ESP 都无能为力。<br>
+  实测数据（80km/h 湿地制动距离）：花纹 8mm 约 38 米 → 花纹 3mm 约 45 米 → 花纹 1.6mm 约 <strong>60 米以上</strong>。这 20 多米的差距，就是一次追尾。</p>
+</div>
+
+<h4>③ 老化——看生产日期</h4>
+<p>轮胎是橡胶制品，会自然老化开裂，<strong>即使花纹还深也必须换</strong>。</p>
+<ul>
+  <li>找到胎侧 <code>DOT</code> 后面 4 位数字，如 <code>2326</code> = 2026 年第 23 周生产</li>
+  <li><strong>使用年限：一般 5～6 年。</strong>即使里程极少、花纹全新，橡胶也会硬化开裂</li>
+  <li>查看侧面是否有细密裂纹（龟裂），胎肩和沟槽底部尤其明显</li>
+  <li>长期停放在阳光下的车，老化更快</li>
+</ul>
+
+<h3>8.3 轮胎换位与四轮定位</h3>
+<ul>
+  <li><strong>换位：</strong>每 8000～10000 公里换一次位置，平衡各轮磨损。前驱车通常采用"前后交叉换位"（左后→右前，右后→左前）。<strong>注意：单向轮胎只能前后换，不能交叉</strong>（胎侧有旋转箭头标识）</li>
+  <li><strong>四轮定位：</strong>不是常规保养项目，只在以下情况做：跑偏、方向盘不正、轮胎异常偏磨、更换悬挂件、碰撞事故后</li>
+  <li><strong>动平衡：</strong>更换轮胎或补胎后必须做。抖动症状：高速（80～120km/h）方向盘或车身抖动</li>
+</ul>
+
+<div class="box ok">
+  <div class="t">✓ 补胎的边界</div>
+  <ul style="margin-bottom:0">
+    <li><strong>可补：</strong>胎面中央区域的钉子孔，直径小于 6mm，且未伤及帘布层</li>
+    <li><strong>推荐方式：</strong>蘑菇钉（内外兼顾，密封性好）。塞胶条只适合应急</li>
+    <li><strong>不可补，必须换：</strong>胎侧损伤（无法修复，结构强度不足）、胎肩区域、孔洞过大、多次修补、帘布层暴露或鼓包</li>
+    <li><strong>看到鼓包立刻换胎</strong>——这是帘布层断裂的信号，随时可能爆裂</li>
+  </ul>
+</div>
+
+<!-- ================= 9 ================= -->
+<h2 id="s9"><span class="num">09</span>电从哪来：电瓶、发电机与电气自检</h2>
+
+<p class="lead">电瓶是"消耗品中最不该被忽视"的一个——它坏之前几乎没有征兆，一坏就是打不着火，直接把你困在停车场。</p>
+
+<h3>9.1 电瓶的两种典型死法</h3>
+<div class="tw">
+<table>
+  <thead><tr><th>情况</th><th>机理</th><th>能否恢复</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>容量自然衰减</strong></td>
+      <td>极板硫化、活性物质脱落，储能能力下降</td>
+      <td>不可逆。表现为冷天启动无力、熄火后很快没电</td>
+    </tr>
+    <tr>
+      <td><strong>深度亏电</strong></td>
+      <td>长期短途行驶充电不足、或长时间开灯停车、或发电机故障</td>
+      <td>轻度可通过长时间行驶/充电机恢复；重度同样不可逆</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box warn">
+  <div class="t">⚠ 最伤电瓶的用法：长期短途</div>
+  <p style="margin-bottom:0">启动一次发动机消耗的电量，大约需要行驶 <strong>20 分钟</strong>才能补回来。所以每天只开 5～10 分钟通勤的车，电瓶长期处于"欠充"状态，寿命可能只有 2 年（正常 3～5 年）。<strong>建议每周至少跑一次 30 分钟以上的路。</strong></p>
+</div>
+
+<h4>寿命与更换信号</h4>
+<ul>
+  <li><strong>寿命：</strong>一般 3～5 年（带启停功能的车约 2～3 年，因为频繁启动放电更深）</li>
+  <li><strong>预警信号：</strong>冷车启动时起动机"咔咔"无力、灯光明显变暗、大灯怠速时闪烁、仪表重启</li>
+  <li><strong>检测手段：</strong>用蓄电池检测仪测冷启动电流（CCA）和内阻，或看静态电压（健康电瓶熄火静置后应 ≥ 12.4V，低于 12.2V 说明电量不足，低于 11.8V 基本要换）</li>
+</ul>
+
+<div class="box danger">
+  <div class="t">✕ 启停车型换电瓶有讲究</div>
+  <p style="margin-bottom:0">带自动启停的车大多使用 <strong>AGM 或 EFB 电瓶</strong>（耐深放电、充电接受能力强）。绝对不能换成普通铅酸电瓶，否则很快就会损坏。此外，更换后可能需要用诊断仪<strong>做"电瓶注册/匹配"</strong>，否则充电策略仍按旧电瓶参数工作，新电瓶会过充或欠充、短命。</p>
+</div>
+
+<h3>9.2 发电机</h3>
+<p>发电机负责在发动机运转时供电并给电瓶充电。判断是否正常：<strong>发动机运转时测量电瓶两端电压，应在 13.5～14.5V 之间。</strong>若只有 12V 左右（未充电）或超过 15V（过充），都说明发电机或调节器故障。</p>
+<p>典型症状：行驶中电瓶灯亮 → 靠电瓶剩余电量能撑几十公里，之后全车电气逐渐失效（先是灯光变暗、ABS 报警、最后熄火）。<strong>此时应尽快就近停车，不要停车后熄火（可能再也打不着）。</strong></p>
+
+<h3>9.3 保险丝与继电器：最便宜的排查手段</h3>
+<p>车上某个功能突然失效（喇叭不响、某个灯不亮、点烟器没电、雨刮不动），<strong>第一件事就是查保险丝</strong>，而不是去 4S 店。</p>
+<ul>
+  <li>保险丝盒通常在<strong>发动机舱</strong>和<strong>驾驶舱内（方向盘下方/副驾手套箱后）</strong>两处</li>
+  <li>盒盖内侧有布局图，标注每个保险丝的编号、功能、额定电流</li>
+  <li>用肉眼观察或万用表通断档检查，断了换同规格（<strong>不可用更大电流的替代</strong>）</li>
+  <li>更换后如果立刻再次烧断，说明线路有短路，需要检修，不要反复换</li>
+</ul>
+
+<!-- ================= 10 ================= -->
+<h2 id="s10"><span class="num">10</span>把知识变成表格：保养周期与耗材选购</h2>
+
+<p class="lead">前面讲原理，这一节给可执行的结论。请注意：<strong>以下为通用参考值，你的车辆手册永远优先。</strong></p>
+
+<h3>10.1 保养周期总表</h3>
+
+<div class="tw">
+<table>
+  <thead>
+    <tr><th>项目</th><th>常规周期</th><th>严苛工况</th><th>性质</th><th>相对成本</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>机油 + 机滤</strong></td><td>全合成 1 万公里 / 1 年</td><td>5000～7500 公里 / 8 个月</td><td>消耗品</td><td>★★</td></tr>
+    <tr><td><strong>空气滤清器</strong></td><td>1～2 万公里</td><td>5000～8000 公里</td><td>消耗品</td><td>★</td></tr>
+    <tr><td><strong>空调滤清器</strong></td><td>1 万公里 / 1 年</td><td>半年（多尘/过敏人群）</td><td>消耗品</td><td>★</td></tr>
+    <tr><td><strong>汽油滤清器</strong></td><td>外置 2～4 万；内置 6～10 万公里</td><td>按低值</td><td>消耗品</td><td>★★</td></tr>
+    <tr><td><strong>防冻液</strong></td><td>长效型 5 年 / 10 万公里</td><td>按手册低值</td><td>消耗品</td><td>★★</td></tr>
+    <tr><td><strong>刹车油</strong></td><td><strong>2 年 / 4 万公里</strong></td><td>2 年（按时间，不按里程）</td><td>消耗品</td><td>★★</td></tr>
+    <tr><td><strong>火花塞</strong></td><td>镍 2～4 万；铂 4～6 万；铱 6～10 万公里</td><td>按低值</td><td>磨损件</td><td>★★</td></tr>
+    <tr><td><strong>变速箱油</strong></td><td>AT/CVT 4～8 万公里</td><td>4 万公里</td><td>消耗品</td><td>★★★</td></tr>
+    <tr><td><strong>刹车片</strong></td><td>3～6 万公里（按实际厚度）</td><td>2～3 万公里</td><td>磨损件</td><td>★★</td></tr>
+    <tr><td><strong>刹车盘</strong></td><td>换 2 次片配 1 次盘（按厚度）</td><td>按实测</td><td>磨损件</td><td>★★★</td></tr>
+    <tr><td><strong>轮胎</strong></td><td>5～6 年 或 沟深 3mm</td><td>按实测</td><td>磨损件</td><td>★★★★</td></tr>
+    <tr><td><strong>雨刮片</strong></td><td>6～12 个月</td><td>按效果</td><td>磨损件</td><td>★</td></tr>
+    <tr><td><strong>正时皮带</strong></td><td>6～10 万公里（<strong>严格按手册</strong>）</td><td>按低值，含张紧轮/水泵一起换</td><td>磨损件</td><td>★★★★</td></tr>
+    <tr><td><strong>电瓶</strong></td><td>3～5 年（启停车 2～3 年）</td><td>按检测值</td><td>磨损件</td><td>★★★</td></tr>
+    <tr><td><strong>减震器</strong></td><td>8～10 万公里或出现症状</td><td>按实测</td><td>磨损件</td><td>★★★</td></tr>
+    <tr><td><strong>四轮换位</strong></td><td>8000～1 万公里</td><td>5000 公里</td><td>作业项目</td><td>★</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box danger">
+  <div class="t">✕ 唯一"不能延后"的项目：正时皮带</div>
+  <p style="margin-bottom:0">正时皮带断裂的瞬间，凸轮轴停止转动但曲轴还在惯性旋转，<strong>活塞会直接撞击气门</strong>，造成气门弯曲、活塞顶穿、缸盖报废——维修费通常上万元，甚至直接判发动机死刑。所以正时皮带必须<strong>严格按手册周期更换，绝不要"看着还行再撑撑"</strong>。用正时链条的发动机（大部分现代车）无此项目，但需注意正规机油对链条的保护（低等级机油会加速链条拉伸）。</p>
+</div>
+
+<h3>10.2 一张图看懂保养节奏</h3>
+
+<figure>
+<svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="保养里程时间轴">
+  <!-- 主轴 -->
+  <line x1="40" y1="170" x2="640" y2="170" stroke="#9aa2b1" stroke-width="2.5"/>
+
+  <!-- 刻度 -->
+  <g font-family="sans-serif" font-size="12" fill="#3d434e" text-anchor="middle">
+    <line x1="70" y1="164" x2="70" y2="176" stroke="#9aa2b1" stroke-width="2"/>
+    <text x="70" y="196" font-weight="700">0.5万</text>
+
+    <line x1="190" y1="164" x2="190" y2="176" stroke="#9aa2b1" stroke-width="2"/>
+    <text x="190" y="196" font-weight="700">1万</text>
+
+    <line x1="310" y1="164" x2="310" y2="176" stroke="#9aa2b1" stroke-width="2"/>
+    <text x="310" y="196" font-weight="700">2万</text>
+
+    <line x1="430" y1="164" x2="430" y2="176" stroke="#9aa2b1" stroke-width="2"/>
+    <text x="430" y="196" font-weight="700">4万</text>
+
+    <line x1="550" y1="164" x2="550" y2="176" stroke="#9aa2b1" stroke-width="2"/>
+    <text x="550" y="196" font-weight="700">6万+</text>
+  </g>
+
+  <!-- 上方事件 -->
+  <g font-family="sans-serif" font-size="11.5">
+    <!-- 机油 -->
+    <rect x="34" y="60" width="256" height="34" rx="17" fill="#eef4ff" stroke="#8ab4f8"/>
+    <text x="162" y="82" fill="#1668dc" text-anchor="middle" font-weight="600">机油 + 机滤：每 1 万公里 / 1 年</text>
+    <line x1="162" y1="94" x2="162" y2="164" stroke="#8ab4f8" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+    <!-- 空滤 -->
+    <rect x="120" y="14" width="200" height="30" rx="15" fill="#f0fdf4" stroke="#7cc79a"/>
+    <text x="220" y="34" fill="#15803d" text-anchor="middle" font-weight="600">空滤 / 空调滤：1～2 万公里</text>
+    <line x1="220" y1="44" x2="220" y2="164" stroke="#7cc79a" stroke-width="1.2" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- 下方事件 -->
+  <g font-family="sans-serif" font-size="11.5">
+    <!-- 刹车油 -->
+    <rect x="60" y="210" width="180" height="32" rx="16" fill="#fff5ed" stroke="#fed7aa"/>
+    <text x="150" y="231" fill="#c2410c" text-anchor="middle" font-weight="600">刹车油：2 年 / 4 万公里</text>
+    <line x1="150" y1="210" x2="150" y2="176" stroke="#fed7aa" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+    <!-- 火花塞 -->
+    <rect x="250" y="210" width="180" height="32" rx="16" fill="#fff5ed" stroke="#fed7aa"/>
+    <text x="340" y="231" fill="#c2410c" text-anchor="middle" font-weight="600">火花塞：2～6 万公里</text>
+    <line x1="340" y1="210" x2="340" y2="176" stroke="#fed7aa" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+    <!-- 变速箱油 -->
+    <rect x="360" y="256" width="200" height="32" rx="16" fill="#fdf2f1" stroke="#f5c6c0"/>
+    <text x="460" y="277" fill="#c0392b" text-anchor="middle" font-weight="600">变速箱油：4～8 万公里</text>
+    <line x1="460" y1="256" x2="460" y2="176" stroke="#f5c6c0" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+    <!-- 刹车片 -->
+    <rect x="410" y="210" width="190" height="32" rx="16" fill="#fff5ed" stroke="#fed7aa"/>
+    <text x="505" y="231" fill="#c2410c" text-anchor="middle" font-weight="600">刹车片：按厚度实测</text>
+    <line x1="505" y1="210" x2="505" y2="176" stroke="#fed7aa" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+    <!-- 正时 -->
+    <rect x="470" y="300" width="170" height="32" rx="16" fill="#fdf2f1" stroke="#f5c6c0"/>
+    <text x="555" y="321" fill="#c0392b" text-anchor="middle" font-weight="600">正时皮带：6～10 万</text>
+    <line x1="555" y1="300" x2="555" y2="176" stroke="#f5c6c0" stroke-width="1.2" stroke-dasharray="3 3"/>
+  </g>
+</svg>
+<figcaption>图 10-1 保养节奏时间轴（示意）。注意每个项目的"节奏"不同：机油最频繁（1 万），刹车油按时间（2 年），刹车片按实测厚度。</figcaption>
+</figure>
+
+<h3>10.3 耗材选购优先级</h3>
+
+<div class="box key">
+  <div class="t">✓ 值得花钱（安全与核心）</div>
+  <ul style="margin-bottom:0">
+    <li><strong>机油、变速箱油、刹车油</strong> —— 用错直接损坏总成</li>
+    <li><strong>刹车片、刹车盘、轮胎</strong> —— 直接关系生命安全，不要选杂牌</li>
+    <li><strong>正时皮带套件</strong> —— 断裂代价巨大</li>
+    <li>优选原则：<strong>原厂件 &gt; 知名品牌配套件 &gt; 大品牌通用件 &gt;&gt; 不知名白牌</strong></li>
+  </ul>
+</div>
+
+<div class="box ok">
+  <div class="t">✓ 可以省（影响小）</div>
+  <ul style="margin-bottom:0">
+    <li><strong>空调滤、雨刮片</strong> —— 结构简单，正规品牌即可，也可自己换</li>
+    <li><strong>空气滤</strong> —— 选可靠品牌即可，不必原厂</li>
+    <li><strong>玻璃水</strong> —— 唯一可以用"自来水+洗洁精"应急的项目（但冬天必须用防冻型）</li>
+  </ul>
+</div>
+
+<div class="box warn">
+  <div class="t">⚠ 型号必须精确匹配的项目</div>
+  <ul style="margin-bottom:0">
+    <li><strong>变速箱油</strong> —— 必须核对手册上的规格号，ATF / CVT 油绝不可替代</li>
+    <li><strong>刹车油</strong> —— DOT4 与 DOT5 不可混用</li>
+    <li><strong>防冻液</strong> —— 按类型（有机酸/无机酸）和颜色匹配，不混加</li>
+    <li><strong>机油</strong> —— 黏度必须与手册一致，认证等级不低于要求</li>
+    <li><strong>电瓶</strong> —— 启停车必须用 AGM/EFB，换后需注册匹配</li>
+  </ul>
+</div>
+
+<!-- ================= 11 ================= -->
+<h2 id="s11"><span class="num">11</span>日常自检：每月 10 分钟五项检查</h2>
+
+<p class="lead">养成习惯之后，这五项总共花不到 10 分钟，但能提前发现 80% 的潜在问题。建议固定在每月第一个周末做。</p>
+
+<h3>检查流程</h3>
+
+<figure>
+<svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="每月自检五项流程">
+  <!-- 步骤1 -->
+  <rect x="40" y="30" width="290" height="72" rx="10" fill="#fff" stroke="#e3e6ec" stroke-width="1.4"/>
+  <circle cx="72" cy="66" r="17" fill="#1668dc"/>
+  <text x="72" y="72" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">1</text>
+  <text x="104" y="58" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">冷车查机油</text>
+  <text x="104" y="80" font-size="11.5" fill="#6b7280" font-family="sans-serif">熄火 10 分钟后，拔出机油尺擦净再插回</text>
+  <text x="104" y="96" font-size="11.5" fill="#6b7280" font-family="sans-serif">液位在 MIN–MAX 之间，正常</text>
+
+  <!-- 步骤2 -->
+  <rect x="350" y="30" width="290" height="72" rx="10" fill="#fff" stroke="#e3e6ec" stroke-width="1.4"/>
+  <circle cx="382" cy="66" r="17" fill="#1668dc"/>
+  <text x="382" y="72" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">2</text>
+  <text x="414" y="58" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">冷车查冷却液</text>
+  <text x="414" y="80" font-size="11.5" fill="#6b7280" font-family="sans-serif">看膨胀壶 MIN–MAX 刻度之间</text>
+  <text x="414" y="96" font-size="11.5" fill="#6b7280" font-family="sans-serif">注意：必须在冷车状态查看</text>
+
+  <!-- 步骤3 -->
+  <rect x="40" y="122" width="290" height="72" rx="10" fill="#fff" stroke="#e3e6ec" stroke-width="1.4"/>
+  <circle cx="72" cy="158" r="17" fill="#1668dc"/>
+  <text x="72" y="164" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">3</text>
+  <text x="104" y="150" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">查刹车油液位</text>
+  <text x="104" y="172" font-size="11.5" fill="#6b7280" font-family="sans-serif">看储油罐刻度，同时观察油色</text>
+  <text x="104" y="188" font-size="11.5" fill="#6b7280" font-family="sans-serif">明显变深/发黑说明该换了</text>
+
+  <!-- 步骤4 -->
+  <rect x="350" y="122" width="290" height="72" rx="10" fill="#fff" stroke="#e3e6ec" stroke-width="1.4"/>
+  <circle cx="382" cy="158" r="17" fill="#1668dc"/>
+  <text x="382" y="164" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">4</text>
+  <text x="414" y="150" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">四个轮胎测胎压</text>
+  <text x="414" y="172" font-size="11.5" fill="#6b7280" font-family="sans-serif">冷车状态，按门框标签值</text>
+  <text x="414" y="188" font-size="11.5" fill="#6b7280" font-family="sans-serif">顺手目视胎面有无扎钉、鼓包</text>
+
+  <!-- 步骤5 -->
+  <rect x="40" y="214" width="600" height="72" rx="10" fill="#fff" stroke="#e3e6ec" stroke-width="1.4"/>
+  <circle cx="72" cy="250" r="17" fill="#1668dc"/>
+  <text x="72" y="256" font-size="15" font-weight="800" fill="#fff" text-anchor="middle" font-family="sans-serif">5</text>
+  <text x="104" y="242" font-size="14" font-weight="700" fill="#1a1d23" font-family="sans-serif">灯光 + 雨刮 + 异响巡检</text>
+  <text x="104" y="264" font-size="11.5" fill="#6b7280" font-family="sans-serif">打开全车灯（示宽、近远光、转向、刹车、倒车、雾灯），绕车一周看是否都亮；检查雨刮刮拭是否干净、有无异响</text>
+  <text x="104" y="280" font-size="11.5" fill="#6b7280" font-family="sans-serif">启动后听是否有异常声音（皮带的吱吱声、底盘的咯噔声）</text>
+
+  <!-- 提示 -->
+  <rect x="40" y="306" width="600" height="56" rx="10" fill="#fffbf0" stroke="#f0dca8" stroke-width="1.4"/>
+  <text x="64" y="330" font-size="13" font-weight="700" fill="#8a5b00" font-family="sans-serif">💡 建议在手边备：胎压计、一次性手套、纸巾、手机（拍照记录液位）</text>
+  <text x="64" y="350" font-size="12" fill="#8a5b00" font-family="sans-serif">连续记录几个月，你就能摸清自己车的"正常状态"，任何偏离都能第一时间发现。</text>
+</svg>
+<figcaption>图 11-1 每月自检五步流程。核心价值不是"查出问题"，而是<strong>建立你对自己车正常状态的基准认知</strong>。</figcaption>
+</figure>
+
+<h3>加分项：出车前绕车一周</h3>
+<p>长途前或每天出车前花 30 秒绕车一周，主要看三件事：</p>
+<ol>
+  <li><strong>地面有无油渍/水渍</strong> —— 漏油（黑褐色）、漏冷却液（绿/红/粉色甜味）、漏刹车油（淡黄色）位置不同，指向不同系统</li>
+  <li><strong>轮胎是否有明显亏气或异物</strong> —— 目视就能看出哪个轮"趴"了</li>
+  <li><strong>灯具有无破损、车牌是否被遮挡</strong> —— 也是法规要求</li>
+</ol>
+
+<!-- ================= 12 ================= -->
+<h2 id="s12"><span class="num">12</span>看症状 → 找原因：故障速查对照表</h2>
+
+<p class="lead">这一节是"从现象反推原因"的训练。学会它，你去修理厂时就能听懂对方在说什么，也能判断报价是否合理。</p>
+
+<div class="tw">
+<table>
+  <thead>
+    <tr><th style="width:24%">症状</th><th style="width:38%">可能原因（按概率排序）</th><th>自检方向</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>冷车启动困难，热车正常</strong></td>
+      <td>电瓶容量不足 → 火花塞老化 → 节气门/喷油嘴积碳 → 燃油泵供压不足 → 水温传感器故障</td>
+      <td>先测电瓶电压和 CCA；再看火花塞使用里程</td>
+    </tr>
+    <tr>
+      <td><strong>怠速抖动明显</strong></td>
+      <td>火花塞/点火线圈失效（某缸失火）→ 节气门积碳 → 进气系统漏气 → 发动机机脚胶老化 → 喷油嘴堵塞</td>
+      <td>读故障码看是否报失火（P030x）；检查机脚胶是否塌陷</td>
+    </tr>
+    <tr>
+      <td><strong>加速无力、高速乏力</strong></td>
+      <td>空滤堵塞 → 汽油滤堵塞 → 火花塞老化 → 排气系统（三元催化）堵塞 → 涡轮增压故障</td>
+      <td>检查空滤透光性；确认最近一次换件时间</td>
+    </tr>
+    <tr>
+      <td><strong>油耗突然升高</strong></td>
+      <td>胎压不足（最常见！）→ 空滤堵塞 → 氧传感器老化 → 刹车拖滞（卡钳不回位）→ 火花塞老化 → 节气门积碳</td>
+      <td><strong>先查胎压</strong>，再摸轮毂是否发烫（拖滞会导致单侧轮毂异常热）</td>
+    </tr>
+    <tr>
+      <td><strong>刹车时方向盘抖动</strong></td>
+      <td>前刹车盘变形（最常见）→ 刹车盘厚度不均 → 轮毂轴承松动 → 轮胎动平衡失准</td>
+      <td>若只在刹车时抖，一般是刹车盘；不刹车也抖则查动平衡</td>
+    </tr>
+    <tr>
+      <td><strong>刹车踏板变软/行程长</strong></td>
+      <td><strong>刹车油含水/有空气</strong> → 刹车油泄漏 → 主缸内漏 → 刹车片严重磨损</td>
+      <td>立即检查刹车油液位和含水率，<strong>不要继续开</strong></td>
+    </tr>
+    <tr>
+      <td><strong>刹车有尖锐金属摩擦声</strong></td>
+      <td>刹车片磨损报警片接触刹车盘 → 刹车片完全磨尽（已伤盘）</td>
+      <td>立即检查刹车片厚度</td>
+    </tr>
+    <tr>
+      <td><strong>过减速带"咯噔/咚咚"响</strong></td>
+      <td>稳定杆胶套/拉杆磨损 → 摆臂胶套开裂 → 减震器顶胶老化 → 球头间隙大</td>
+      <td>顶起车辆，用撬棍逐个查间隙</td>
+    </tr>
+    <tr>
+      <td><strong>方向跑偏</strong></td>
+      <td>四轮定位失准 → 两侧胎压不一致 → 轮胎磨损不均 → 悬挂件变形 → 刹车拖滞</td>
+      <td>先查胎压（左右是否一致），再考虑定位</td>
+    </tr>
+    <tr>
+      <td><strong>高速方向盘抖动（80～120km/h）</strong></td>
+      <td>车轮动平衡失准 → 轮胎变形/鼓包 → 轮毂变形 → 传动轴不平衡</td>
+      <td>做四轮动平衡；同时检查轮胎是否变形</td>
+    </tr>
+    <tr>
+      <td><strong>水温过高</strong></td>
+      <td>冷却液不足/泄漏 → 节温器卡死在关闭 → 散热风扇不转 → 水泵失效 → 水箱堵塞</td>
+      <td><strong>立即停车冷却后检查</strong>，切勿热车开盖</td>
+    </tr>
+    <tr>
+      <td><strong>冷车冒蓝烟</strong></td>
+      <td>气门油封老化 → 活塞环磨损 → 曲轴箱通风（PCV）阀故障</td>
+      <td>查机油消耗量（每 1000 公里消耗 &gt; 0.5L 属异常）</td>
+    </tr>
+    <tr>
+      <td><strong>排气冒白烟（持续不散）</strong></td>
+      <td>缸垫冲了（冷却液进缸）→ 缸体/缸盖裂纹</td>
+      <td>同时看冷却液是否持续减少、机油是否乳化</td>
+    </tr>
+    <tr>
+      <td><strong>排气冒黑烟</strong></td>
+      <td>混合气过浓 → 喷油嘴漏油 → 空气流量计故障 → 氧传感器失效</td>
+      <td>读故障码，检查进气与燃油系统</td>
+    </tr>
+    <tr>
+      <td><strong>换挡顿挫/冲击</strong></td>
+      <td>变速箱油劣化或不足 → 电磁阀故障 → 变速箱内部磨损</td>
+      <td>先查油位和油质（闻气味、看颜色）</td>
+    </tr>
+    <tr>
+      <td><strong>打方向有"嗡嗡"声</strong></td>
+      <td>助力油不足/变质 → 助力泵磨损 → 皮带松动</td>
+      <td>查助力油液位与颜色</td>
+    </tr>
+    <tr>
+      <td><strong>电瓶灯亮</strong></td>
+      <td>发电机故障 → 皮带断裂/打滑 → 电瓶接线松动/腐蚀</td>
+      <td>测电压（13.5～14.5V 为正常）</td>
+    </tr>
+    <tr>
+      <td><strong>空调不凉</strong></td>
+      <td>制冷剂不足（泄漏）→ 空调滤堵塞（风小）→ 冷凝器脏堵 → 压缩机故障</td>
+      <td>先看风量（判断滤芯）再看出风温度（判断制冷剂）</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box key">
+  <div class="t">✓ 一个诊断心法</div>
+  <p style="margin-bottom:0"><strong>先排除最便宜的、最常见的可能，再往贵处查。</strong>比如"油耗升高"，先查胎压（免费），再查空滤（几十元），最后才考虑氧传感器（几百元）。很多修理厂会直接从贵的项目开始报价，学会这个顺序能帮你省下大量冤枉钱。</p>
+</div>
+
+<!-- ================= 13 ================= -->
+<h2 id="s13"><span class="num">13</span>避坑指南：常见误区与智商税</h2>
+
+<p class="lead">这一节可能是最实用的。保养行业信息不对称严重，以下项目要么完全没必要，要么效果被严重夸大。</p>
+
+<h3>13.1 经典误区</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th style="width:26%">说法</th><th>真相</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>"5000 公里必须换机油"</strong></td>
+      <td>这是矿物油时代的规则。全合成油配合现代发动机，1 万公里是常规值，部分车型（配长效滤芯、大油底壳）可达 1.5 万公里。<strong>按手册 + 工况判断，不是按老经验。</strong>但注意：如果长期短途（严苛工况），5000～7500 公里换是对的。</td>
+    </tr>
+    <tr>
+      <td><strong>"机油加得越多越好"</strong></td>
+      <td><strong>错的，而且有害。</strong>机油超过 MAX 刻度后，曲轴会搅动过量机油产生泡沫（失去润滑能力），曲轴箱压力升高导致油封漏油。必须严格在 MIN–MAX 之间。</td>
+    </tr>
+    <tr>
+      <td><strong>"加机油添加剂/抗磨剂更保护发动机"</strong></td>
+      <td>正规机油的添加剂配方是经过上千小时台架试验平衡过的。<strong>额外添加会打破平衡</strong>，某些含氯/磷的添加剂还会腐蚀三元催化器、堵塞 GPF。除极少数有厂家背书的品牌外，一律不加。</td>
+    </tr>
+    <tr>
+      <td><strong>"水箱加自来水就行"</strong></td>
+      <td>自来水会结垢、腐蚀、冬天冻裂。应急可以，事后必须换防冻液。</td>
+    </tr>
+    <tr>
+      <td><strong>"刷 ECU 能同时提升动力和省油"</strong></td>
+      <td>物理上不可能。提升动力靠增加喷油和增压值，油耗必然上升。宣称"两者兼得"的都是营销话术。而且改装 ECU 可能失去质保。</td>
+    </tr>
+    <tr>
+      <td><strong>"轮胎要用够 8 年/以花纹为准"</strong></td>
+      <td>橡胶会自然老化。<strong>即使花纹全新，5～6 年也要换</strong>。老化轮胎高速爆胎风险显著上升。</td>
+    </tr>
+    <tr>
+      <td><strong>"刹车油不用换，不够了加点"</strong></td>
+      <td>刹车油的问题是"吸水"，不是"变少"。只补不换无法解决含水量问题。<strong>必须按 2 年周期整换。</strong></td>
+    </tr>
+    <tr>
+      <td><strong>"变速箱是终身免维护"</strong></td>
+      <td>"终身"通常指厂家定义的质保期或设计寿命（如 15 万公里），不是"永远不用管"。油液性能下降后变速箱磨损会加速，<strong>定期换油成本远低于大修。</strong></td>
+    </tr>
+    <tr>
+      <td><strong>"新车要磨合期，不能上高速"</strong></td>
+      <td>现代发动机制造精度高，基本无传统磨合期要求。手册一般只建议"前 1000 公里避免长时间恒定转速、避免急加速和急刹车"（主要是为了让轮胎、刹车片、各摩擦副均匀贴合）。<strong>可以上高速，只是不要定速跑太久。</strong></td>
+    </tr>
+    <tr>
+      <td><strong>"空调不凉就是缺氟，加满就好"</strong></td>
+      <td>制冷剂在密闭系统里循环，<strong>正常不该减少</strong>。缺了 = 有泄漏，只加不修过几个月又会不凉。正确做法是先查漏（检漏仪/荧光剂）再补充。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3>13.2 慎做的项目</h3>
+
+<div class="box warn">
+  <div class="t">⚠ 可做可不做（视车况）</div>
+  <ul style="margin-bottom:0">
+    <li><strong>发动机内部清洗（清洗油/免拆清洗）：</strong>对保养良好的车没必要；对高里程、油泥严重的车，反而可能把大块油泥洗下来堵住油道。有争议，谨慎。</li>
+    <li><strong>燃油系统清洗（打吊瓶）：</strong>轻微积碳可以用正规燃油添加剂（PEA 或 PIB 类）低速行驶清洁，性价比更高。</li>
+    <li><strong>刹车系统深度保养（打磨导销、涂抹消音膏）：</strong>如果确实存在卡滞、异响，是有价值的；如果只是"例行推荐"，可以跳过。自己动手成本极低（一管消音膏几十元）。</li>
+    <li><strong>底盘装甲：</strong>北方融雪盐地区有一定防锈价值；南方干燥地区意义有限。</li>
+  </ul>
+</div>
+
+<div class="box danger">
+  <div class="t">✕ 建议一律拒绝</div>
+  <ul style="margin-bottom:0">
+    <li><strong>"清洗三元催化/喷油嘴打吊瓶套餐"捆绑销售</strong> —— 通常是无必要的套餐项目</li>
+    <li><strong>"加装节油器 / OBD 节油芯片 / 电子涡轮"</strong> —— 无科学依据，部分会干扰 ECU 导致故障</li>
+    <li><strong>"纳米抗磨剂/陶瓷修复剂"</strong> —— 无可靠第三方数据支持，可能堵塞油道和滤芯</li>
+    <li><strong>"免拆治理烧机油"</strong> —— 效果不稳定，严重烧机油需实际检修</li>
+    <li><strong>"新车贴膜镀晶套餐 + 延保捆绑"</strong> —— 分开评估，不要被打包价迷惑</li>
+    <li><strong>非必要的高里程"全套大保养"</strong> —— 很多项目（如各类清洗）在手册里根本不存在</li>
+  </ul>
+</div>
+
+<div class="box key">
+  <div class="t">✓ 反套路三句话</div>
+  <ol style="margin-bottom:0">
+    <li>"这一项在厂家保养手册上是多少公里/多少年？"（逼对方回到手册依据）</li>
+    <li>"能不能带我现场看一下需要更换的件？"（真需要换的东西一定能指给你看，比如刹车片厚度、滤芯脏污程度）</li>
+    <li>"先不急，我回去查一下手册再决定。"（给自己留出判断时间，避免当场被推动消费）</li>
+  </ol>
+</div>
+
+<!-- ================= 14 ================= -->
+<h2 id="s14"><span class="num">14</span>应急处理：路上出问题怎么办</h2>
+
+<p class="lead">知识在紧急情况下的价值最高。以下场景按"处理顺序"排列，建议记住前三条。</p>
+
+<div class="box danger">
+  <div class="t">①②③ 三条保命原则（优先记住）</div>
+  <ol style="margin-bottom:0">
+    <li><strong>先靠边、再熄火、开双闪、放三角牌、撤到护栏外。</strong>高速上事故的二次伤害远比车辆故障本身危险。三角牌需放在车后 150 米（高速）或 50～100 米（普通道路）。</li>
+    <li><strong>任何"红色"报警灯（机油压力、水温、电瓶、刹车）+ 异常气味/声音/抖动 → 立即停车熄火。</strong>不要抱"开到修理厂再说"的心态，几十秒的拖延可能变成数万元的维修。</li>
+    <li><strong>宁可付拖车费，不要冒着毁车的风险继续开。</strong>一次拖车几百元，一次发动机大修几万元。</li>
+  </ol>
+</div>
+
+<h3>常见紧急场景处理</h3>
+
+<div class="tw">
+<table>
+  <thead><tr><th style="width:24%">场景</th><th>正确处理</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>水温报警 / 开锅</strong></td>
+      <td>靠边停车、熄火，<strong>等完全冷却（至少 30～60 分钟）</strong>再检查液位。<br><strong>切勿立即打开水箱盖</strong>（120℃ 高压液体会喷射烫伤）。<br>冷却后液位低可补防冻液或纯水（事后尽快换）；若补完后仍高温，叫拖车。<br>若开锅后继续行驶，缸体、缸垫大概率已损坏。</td>
+    </tr>
+    <tr>
+      <td><strong>机油压力灯亮</strong></td>
+      <td><strong>立即熄火</strong>，可滑行至路边。<strong>不要试图再启动</strong>（哪怕只是"试一下"）。<br>等 5 分钟查机油尺：缺油则补充，补充后仍报警必须拖车。<br>这根灯的容错时间是"秒"级的。</td>
+    </tr>
+    <tr>
+      <td><strong>刹车失灵（踏板踩空）</strong></td>
+      <td>① 连续快速点踩刹车（可能建立残余压力）<br>② 逐级降挡，用发动机牵阻减速（自动挡挂 L/手动模式降挡）<br>③ <strong>拉手刹要缓慢、持续</strong>（猛拉会导致后轮抱死甩尾）；电子手刹则持续拉住不放<br>④ 寻找避险车道、上坡、路边护栏或软质障碍物擦蹭减速<br>⑤ 全程开双闪、鸣喇叭警示</td>
+    </tr>
+    <tr>
+      <td><strong>爆胎</strong></td>
+      <td>① <strong>紧握方向盘，保持直线</strong>（最关键的 3 秒）<br>② <strong>不要猛踩刹车、不要猛打方向</strong>（会翻车/甩尾）<br>③ 松油门自然减速，速度降下来后轻踩刹车，缓慢靠边<br>④ 停在平坦安全处，开双闪、放三角牌，再换备胎</td>
+    </tr>
+    <tr>
+      <td><strong>车打不着火</strong></td>
+      <td>① 听声音判断：<strong>"咔咔"无力转 = 电瓶没电</strong>（搭电或用应急电源）；完全无声 = 起动机或挡位问题<br>② 自动挡确认在 P 挡、踩住刹车<br>③ 搭电顺序：<strong>正极接正极，负极接被救援车车身搭铁点</strong>（不要接对方电瓶负极），启动后先拆负极再拆正极<br>④ 搭电后能启动说明电瓶问题，应尽快检测更换</td>
+    </tr>
+    <tr>
+      <td><strong>扎胎漏气</strong></td>
+      <td>① 未完全漏气：低速（&lt; 40km/h）就近补胎<br>② 已明显亏气：换备胎或用补胎液应急<br>③ <strong>切勿低压高速行驶</strong>——胎侧会因反复弯折急剧发热而报废甚至爆胎<br>④ 备胎（尤其是小尺寸应急备胎）限速通常 80km/h，且不可长期使用</td>
+    </tr>
+    <tr>
+      <td><strong>涉水后熄火</strong></td>
+      <td><strong>绝对不要再次点火启动！</strong>水会通过进气进入气缸，重新启动会导致连杆弯曲、发动机报废（且可能不在保险赔付范围内，属于"二次启动"免责条款）。<br>正确做法：断电、叫拖车，到店检查进气系统、机油和变速箱油是否进水。</td>
+    </tr>
+    <tr>
+      <td><strong>电瓶完全没电，车门/后备箱锁死</strong></td>
+      <td>多数车钥匙内有<strong>机械钥匙</strong>（拔开或按按钮取出），门把手上有隐藏的机械锁孔（可能有装饰盖，撬开即可）。<br>部分车的后备箱内有应急逃生拉手。</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="box ok">
+  <div class="t">✓ 车上常备清单</div>
+  <ul style="margin-bottom:0">
+    <li><strong>三角警示牌</strong>（法规要求，年检必查）、反光背心</li>
+    <li><strong>便携式充气泵 + 胎压计</strong>（比补胎液实用得多）</li>
+    <li><strong>应急启动电源</strong>（带搭电线，几十元到几百元，能自救也能救人）</li>
+    <li>搭电线（如果没买应急电源）、拖车绳</li>
+    <li>手电筒、手套、雨衣、绝缘胶带</li>
+    <li>防冻玻璃水（冬季）、一小瓶备用机油（老车/烧机油车）</li>
+  </ul>
+</div>
+
+<!-- ================= 15 ================= -->
+<h2 id="s15"><span class="num">15</span>结业自测：20 道判断题</h2>
+
+<p class="lead">用来自查掌握程度。答案在最后，建议先自己做完再对照。</p>
+
+<div class="box">
+<ol style="margin-bottom:0">
+  <li>机油变黑就说明必须立即更换。（　）</li>
+  <li>全合成机油的更换周期通常比矿物油长。（　）</li>
+  <li>机油标号 0W-20 中的 "20" 表示机油能承受的最低温度为 -20℃。（　）</li>
+  <li>机油加注量略高于 MAX 刻度线，对发动机保护更好。（　）</li>
+  <li>换机油时可以只换油不换机滤，能省一点钱。（　）</li>
+  <li>空气滤芯堵塞会导致油耗升高和动力下降。（　）</li>
+  <li>防冻液不足时，加点自来水完全没问题。（　）</li>
+  <li>水温报警后应该立刻打开水箱盖检查冷却液。（　）</li>
+  <li>火花塞只需要更换坏掉的那一个气缸的。（　）</li>
+  <li>火花塞电极颜色呈浅棕褐色，说明燃烧状态正常。（　）</li>
+  <li>变速箱油是终身免维护的，不用换。（　）</li>
+  <li>高里程且从未换过变速箱油的车，适合用循环机一次性全换。（　）</li>
+  <li>刹车踏板变软、行程变长，可能与刹车油含水有关。（　）</li>
+  <li>刹车片只看厚度就够了，脚感变差不用管。（　）</li>
+  <li>轮胎花纹深度足够深，即使已经用了 8 年也不需更换。（　）</li>
+  <li>测量胎压应该在跑完高速、轮胎热了之后进行。（　）</li>
+  <li>启停车型可以换成便宜的普通铅酸电瓶。（　）</li>
+  <li>发动机运转时，电瓶两端电压应在 13.5～14.5V 之间。（　）</li>
+  <li>正时皮带接近更换周期时，可以"看着还行"再撑一段。（　）</li>
+  <li>涉水行驶中熄火后，应立刻再次打火把车开出来。（　）</li>
+</ol>
+</div>
+
+<div class="box key" style="margin-top:24px">
+  <div class="t">✓ 答案与解析</div>
+  <div class="tw" style="margin:0">
+  <table>
+    <thead><tr><th style="width:8%">题</th><th style="width:12%">答案</th><th>解析</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>变黑说明清净分散剂在工作，把积碳悬浮在油里。要看是否分层、有颗粒、失去扩散环。</td></tr>
+      <tr><td>2</td><td class="verdict"><span class="v-yes">✓ 对</span></td><td>全合成分子结构稳定、抗氧化强，通常 1～1.5 万公里，矿物油 5000 公里。</td></tr>
+      <tr><td>3</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>"20" 是高温黏度等级，不是温度。低温性能由 W 前的数字表示（0W 约 -35℃）。</td></tr>
+      <tr><td>4</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>机油过多会被曲轴搅成泡沫、失去润滑能力，并导致油封漏油。必须保持 MIN–MAX 之间。</td></tr>
+      <tr><td>5</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>机滤与机油一对一绑定。旧滤芯里的脏油会污染新机油，且堵塞后旁通阀会让脏油直通。</td></tr>
+      <tr><td>6</td><td class="verdict"><span class="v-yes">✓ 对</span></td><td>进气阻力增大 → 进气量不足 → 电脑减少喷油 → 动力下降、油耗上升。</td></tr>
+      <tr><td>7</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>自来水会结垢、腐蚀、冬天冻裂。应急可加纯水，事后必须换成防冻液。</td></tr>
+      <tr><td>8</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>系统内是 120℃ 高压液体，开盖会喷射烫伤。必须完全冷却后再检查。</td></tr>
+      <tr><td>9</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>必须四缸一起换。新旧电极差异会导致各缸做功不均，引发抖动。</td></tr>
+      <tr><td>10</td><td class="verdict"><span class="v-yes">✓ 对</span></td><td>浅棕/灰褐色是理想状态。黑色积碳或白色熔融点才是异常。</td></tr>
+      <tr><td>11</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>"终身免维护"一般指质保期或设计寿命。油液劣化会加速变速箱磨损，应定期更换。</td></tr>
+      <tr><td>12</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>老车靠油泥维持密封与摩擦特性，一次性全换会导致打滑、冲击。应分次重力换油。</td></tr>
+      <tr><td>13</td><td class="verdict"><span class="v-yes">✓ 对</span></td><td>刹车油吸水后沸点下降，高温时产生可压缩气泡，踏板变软。所以必须 2 年更换。</td></tr>
+      <tr><td>14</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>摩擦材料高温后会硬化、摩擦系数下降，厚度够也可能刹车距离变长，需一并检查。</td></tr>
+      <tr><td>15</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>橡胶会自然老化开裂，一般使用 5～6 年即需更换，与花纹深度无关。</td></tr>
+      <tr><td>16</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>必须在冷车时测量。行驶后胎温升高，胎压上升 0.2～0.3bar，读数是假象。</td></tr>
+      <tr><td>17</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>启停车需用 AGM/EFB 电瓶，普通铅酸电瓶会很快损坏，且更换后需做电瓶注册匹配。</td></tr>
+      <tr><td>18</td><td class="verdict"><span class="v-yes">✓ 对</span></td><td>低于 13.5V 说明未充电，高于 14.5V 说明过充，两者都指向发电机或调节器故障。</td></tr>
+      <tr><td>19</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>正时皮带断裂会导致活塞撞气门，维修费上万元。必须严格按手册周期更换。</td></tr>
+      <tr><td>20</td><td class="verdict"><span class="v-no">✕ 错</span></td><td>再次点火会让水进入气缸造成连杆弯曲、发动机报废，且可能遭保险拒赔。</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="box key" style="margin-top:28px">
+  <div class="t">✓ 结业时你该带走的三句话</div>
+  <ol style="margin-bottom:0">
+    <li><strong>保养的本质是对抗三种消耗：</strong>油液变质、滤材堵塞、摩擦件磨损。油液和滤芯按时间/里程换，磨损件按实测换。</li>
+    <li><strong>手册是第一依据，工况是修正系数。</strong>标准周期在严苛工况下要打七折到五折。</li>
+    <li><strong>安全件的钱不能省，智商税的钱一分不花。</strong>刹车、轮胎、正时皮带、机油永远选可靠件；各类"清洗套餐""节油神器"一律拒绝。</li>
+  </ol>
+</div>
+
+<footer>
+  <p><strong>关于本讲义</strong><br>
+  本讲义为通用性入门培训材料，用于建立保养知识的整体框架与判断逻辑。具体的保养周期、油液规格、扭矩参数、故障处理方法，请<strong>以随车《用户手册》和厂家技术资料为准</strong>——不同品牌、不同年款、不同动力形式的车型差异很大。</p>
+  <p>文中数据为行业常见参考范围，非针对特定车型的技术规格。涉及制动、转向、高压电（新能源车）、安全气囊等系统的拆装作业，请交由具备资质的专业人员进行。自行操作前请确保车辆支撑稳固、已断电或熄火充分冷却。</p>
+  <p style="margin-bottom:0;color:#9aa2b1">汽车保养培训讲义 · 第一版</p>
+</footer>
+
+</div>
+</body>
+</html>
